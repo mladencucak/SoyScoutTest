@@ -17,7 +17,7 @@ library("dplyr")
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,fig.align="left"  )
 ```
-# Test
+
 This is a 3-year interdisciplinary and collaborative regional project
 co-directed by the University of Wisconsin-Madison and The Pennsylvania
 State University, with collaborators in OH, MI, IA, MN, NE, and ND. The
