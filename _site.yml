@@ -19,7 +19,11 @@ csl: chicago-author-date.csl
 navbar:
   title: SoyGuide
   left:
-  - text: About
-    href: about.html
   - text: Diseases
     href: Diseases.html
+  - text: Pests
+    href: Pests.html
+  - text: Weeds
+    href: Weeds.html
+  - text: Abiotic
+    href: Abiotic.html

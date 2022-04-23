@@ -1,0 +1,2965 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Weeds</title>
+
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">SoyGuide</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="Diseases.html">Diseases</a>
+</li>
+<li>
+  <a href="Pests.html">Pests</a>
+</li>
+<li>
+  <a href="Weeds.html">Weeds</a>
+</li>
+<li>
+  <a href="Abiotic.html">Abiotic</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Weeds</h1>
+
+</div>
+
+
+<div id="biennial" class="section level1">
+<h1>Biennial</h1>
+<div id="burdock" class="section level2">
+<h2>Burdock</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Burdock
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+biennial
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Plant is a basal rosette the first year, with branched stems the second.
+Leaves are large, heart-shaped, and have wavy margins. Top leaf surface
+is smooth and bottom hairy. Purple flowers produced the second year.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Cotyledons are ovate with waxy surface. Young leaves egg-shaped longer
+chaped with long red-purple petioles.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Cockle button
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Arctium minus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="http://weeds.cropsci.illinois.edu/images/Common%20burdock/index.htm"
+class="uri">http://weeds.cropsci.illinois.edu/images/Common%20burdock/index.htm</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Burdock/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Burdock/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Burdock/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Burdock/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Burdock/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Burdock/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Burdock/7.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+<div id="perennial" class="section level1">
+<h1>Perennial</h1>
+<div id="canada-thistle" class="section level2">
+<h2>Canada Thistle</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Canada thistle
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+perennial
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Lobed, spiny, oblong, alternate leaves. Rhizome up to 3 feet (1 meter)
+deep. Stems are grooved and smoth-slightly hairy. Flowers are pinkish
+and plants dioecious.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Cotyledons are oval and light green color. Early leaves are think and
+longer, lanceolate shape with short hairs. Leaf margins are wavy lobed
+with spines. Shoots from the rhizome do not form cotyledons, but do form
+rosettes.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Creeping thisle, Green thistle
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Cirsium arvense
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="http://weeds.cropsci.illinois.edu/images/CanadaThistle/index.htm"
+class="uri">http://weeds.cropsci.illinois.edu/images/CanadaThistle/index.htm</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Canada%20thistle/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Canada%20thistle/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Canada%20thistle/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Canada%20thistle/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Canada%20thistle/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Canada%20thistle/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Canada%20thistle/7.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="curly-dock" class="section level2">
+<h2>Curly Dock</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Curly dock
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+perennial
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Large narrow leaves in basal rosette with flowering stem in the middle.
+Stems are smooth, ridged, and may be red. Leaves are alternate and have
+wavy margins. Flowers are greenish and turn dark red when they mature.
+Flowers occur in clusters near the top of the stem.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Stems red-maroon at the base. Cotyledons spatulate shape (rounded at
+apex and narrow at the base). Cotyledons are on petioles and without
+hairs. Early leaves have some reddish patches and shape is a basal
+rosette.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Sour dock, yellow dock
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Rumex crispus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="http://weeds.cropsci.illinois.edu/images/Curly%20dock/index.htm"
+class="uri">http://weeds.cropsci.illinois.edu/images/Curly%20dock/index.htm</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Curly%20dock/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Curly%20dock/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Curly%20dock/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Curly%20dock/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Curly%20dock/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Curly%20dock/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Curly%20dock/7.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Curly%20dock/8.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="dandelion" class="section level2">
+<h2>Dandelion</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Dandelion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+basal
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+perennial
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Taproot plant that exudes white substance when injured. Rosette leaves
+that are oblong with wavy, deeply lobed margins. Leaves have irregular
+teeth and stems are present on younger leaves. Flowers are yellow and
+form on end of stalks. Seeds attached to a feathery pappus for wind
+dispersal.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Cotledons light green, oval shaped and smooth. Early leaves form a basal
+rosette (shape is spatulate or oval). Young leaves 2-6 inches (5-15 cm)
+long.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Taraxacum officinale
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Flowering Start
+</td>
+<td style="text-align:left;">
+April
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Flowering End
+</td>
+<td style="text-align:left;">
+October
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="http://weeds.cropsci.illinois.edu/images/Dandelion/index.htm"
+class="uri">http://weeds.cropsci.illinois.edu/images/Dandelion/index.htm</a>
+<a href="https://cropwatch.unl.edu/2020/identifying-fall-emerging-weeds"
+class="uri">https://cropwatch.unl.edu/2020/identifying-fall-emerging-weeds</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Dandelion/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Dandelion/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Dandelion/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Dandelion/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Dandelion/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Dandelion/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Dandelion/7.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="dogbane" class="section level2">
+<h2>Dogbane</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Dogbane
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+opposite
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+perennial
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Tall, shrubby upright plant and exude a milky juice when injured. Stems
+are reddish. Leaves are opposite and ovate with a pointed tip, smaller
+than milkweed. Roots are white and fleshy, also has rhizomes. Flowers
+are green-white and located in clusters at the end of stems. Fruit are
+4- to 8-inch-long, narrow, reddish brown, sickle-shaped capsules.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Usually no cotyledons present, since plants arise from the rhizome.
+Cotyledons round, oval, and thick. Young leaves are oppositely arranged
+and smooth. Hypocotyl typically purple.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Indian hemp, Hemp dogbane
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Apocynum cannabinum
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="http://weeds.cropsci.illinois.edu/images/Hemp%20dogbane/index.htm"
+class="uri">http://weeds.cropsci.illinois.edu/images/Hemp%20dogbane/index.htm</a>
+<a
+href="https://mdc.mo.gov/discover-nature/field-guide/indian-hemp-dogbane"
+class="uri">https://mdc.mo.gov/discover-nature/field-guide/indian-hemp-dogbane</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Dogbane/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Dogbane/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Dogbane/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Dogbane/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Dogbane/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Dogbane/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Dogbane/7.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+<div id="summer-annual" class="section level1">
+<h1>Summer Annual</h1>
+<div id="burcucumber" class="section level2">
+<h2>Burcucumber</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Burcucumber
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Plant is viney with branching tendrils. Leaves alternate and round to
+heart-shaped with 5 lobes and tothed margins. Stems hairy and prickly.
+Roots fibrous and flowers yellow with 5 petals. Small cucumber-like
+fruits 3/4 inch (2 cm) long.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Hypocotyls covered with short hairs. Cotyledons are thick and round with
+dense hairs present on top and bottom.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Star cucumber
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Sicyos angulatus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="http://weeds.cropsci.illinois.edu/images/Burcucumber/index.htm"
+class="uri">http://weeds.cropsci.illinois.edu/images/Burcucumber/index.htm</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Burcucumber/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Burcucumber/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Burcucumber/3.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="common-cocklebur" class="section level2">
+<h2>Common Cocklebur</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Common cocklebur
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Tall branched plant with purple speckled stem and large taproot. Leaves
+are alternate with a rough surface. Triangular shape and serrated
+margins and often 3 prominent veins. Flowers formed in burs that are
+brown, woody and very prickly. 2 seeds are contained within each bur.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Hypocotyls are purple at the base. Cotyledons thick and fleshy with
+lanceolate shape.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Clotbur
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Xanthium strumarium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="http://weeds.cropsci.illinois.edu/images/Cocklebur/index.htm"
+class="uri">http://weeds.cropsci.illinois.edu/images/Cocklebur/index.htm</a>
+<a
+href="https://www.ilsoyadvisor.com/on-farm/ilsoyadvisor/identifying-troublesome-broadleaf-weeds-soybeans"
+class="uri">https://www.ilsoyadvisor.com/on-farm/ilsoyadvisor/identifying-troublesome-broadleaf-weeds-soybeans</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Common%20cocklebur/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20cocklebur/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20cocklebur/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20cocklebur/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20cocklebur/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20cocklebur/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20cocklebur/7.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20cocklebur/8.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="common-ragweed" class="section level2">
+<h2>Common Ragweed</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Common ragweed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+broadleaf
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+0.2-2.5 m tall and high pollen producer. Leaves are 4 to 10 cm long, egg
+shaped and hairy on the upper surface and dense on lower surface. Stems
+are erectwith long, rough hairs. Flower heads are small, 2-4 m and occur
+in long narrow racemes. Fruit is a woody, red-brown, achene.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Seedling hypocotyls are green and spotted purple. Cotyledons are
+round-oblong and purple underneath. Young leaves are opposite and become
+alternate with age and dense hairs covering.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Ambrosia artemisiifolia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://weedid.missouri.edu/weedinfo.cfm?weed_id=17"
+class="uri">https://weedid.missouri.edu/weedinfo.cfm?weed_id=17</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Common%20ragweed/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20ragweed/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20ragweed/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20ragweed/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20ragweed/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20ragweed/6.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="eastern-black-nightshade" class="section level2">
+<h2>Eastern Black Nightshade</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Eastern black nightshade
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+broadleaf
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Erect plant reaching over 1 foot tall (0.3 m). Leaves are purple-maroon
+on underside. Leaf margins entire, with some blunt teeth and are simple
+and alternate with ovate shape. Leaves often slightly hairy. Stems are
+branching and round or angular shaped, become woody with age. Flowers
+star-shaped white or purple-tinged in clusters of 5-7. Fruit are small
+green (immature) and purple-black berries 5-12 mm in diameter.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Stems below the cotyledons covered with hairs. Cotyledons green on upper
+surface and purple-maroon on the lower.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Black nightshade
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Solanum ptycanthum
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://weedid.missouri.edu/weedinfo.cfm?weed_id=270"
+class="uri">https://weedid.missouri.edu/weedinfo.cfm?weed_id=270</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Eastern%20black%20nightshade/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Eastern%20black%20nightshade/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Eastern%20black%20nightshade/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Eastern%20black%20nightshade/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Eastern%20black%20nightshade/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="giant-foxtail" class="section level2">
+<h2>Giant Foxtail</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Giant foxtail
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+grassy
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Common weed throughout the U.S. that forms in clumps. Leaf blades reach
+up to 16 inches (40 cm) in lenght and up to 1 inch (25 mm) thick. Stems
+are erect, hairless, and up to 4 feet (1.2 m) tall. Flowers are
+cylindrical panicles with spikelets about 1/8 inch (3mm) long w/1-3
+bristles. The seedhead droops when it matures and many hairs on the
+upper leaf surface.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Seedlings have leaves rolled in a bud and leaf sheaths mostly without
+hairs. Leaf blades may have short hairs on the upper surface and near
+the margins. The ligule of the seedling consists of small hairs 1/16
+inch (0.5 mm) long.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Setaria faberi
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://weedid.missouri.edu/weedinfo.cfm?weed_id=256"
+class="uri">https://weedid.missouri.edu/weedinfo.cfm?weed_id=256</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Giant%20foxtail/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Giant%20foxtail/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Giant%20foxtail/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Giant%20foxtail/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Giant%20foxtail/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="giant-ragweed" class="section level2">
+<h2>Giant Ragweed</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Giant ragweed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+opposite
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Tall plant growth up to 0.5-8 feet (0.2-2.5 m) tall. Leaves are 1.5-4
+inches (4-10 cm) long, egg-shaped, and compound. Leaves hairy on upper
+surface and and dense on lower surface. Stems are tall and branched with
+long hairs. Flowers are small 1/16-1/6 inch (2-4 mm) and green near the
+end of branches.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Hypocotyl stems green and spotted purple. Cotyledons are roundish/oblong
+and purple underside. Young leaves opposite, but become alternate over
+time and hairs.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Ragweed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Ambrosia trifida
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://www.ilsoyadvisor.com/on-farm/ilsoyadvisor/identifying-troublesome-broadleaf-weeds-soybeans"
+class="uri">https://www.ilsoyadvisor.com/on-farm/ilsoyadvisor/identifying-troublesome-broadleaf-weeds-soybeans</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Giant%20ragweed/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Giant%20ragweed/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Giant%20ragweed/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Giant%20ragweed/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Giant%20ragweed/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Giant%20ragweed/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Giant%20ragweed/7.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Giant%20ragweed/8.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="lambsquarters" class="section level2">
+<h2>Lambsquarters</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Lambsquarters
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Planth grows to about 3.5 feet (1.1 m). Leaves alternate, light green
+color and a rounded to triangular shape. Leaf length is 1.25 to 10
+inches (3.2 to 25 cm). Stems are tall, hailess, and have light green and
+some red coloration. Flowers are in panicles at the end of branches,
+color green and without petals. Taproot is short and branched.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Cotyledon elliptic 12-15 mm long, green-gray on upper surface.
+Cotyledons have no prominent midvein (unlike redroot pigweed).
+Hypocotyls hairless green or slightly red. First pair of leaves opposite
+and traingular.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Chenopodium album
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://weedid.missouri.edu/weedinfo.cfm?weed_id=60"
+class="uri">https://weedid.missouri.edu/weedinfo.cfm?weed_id=60</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Lambsquarters/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Lambsquarters/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Lambsquarters/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Lambsquarters/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Lambsquarters/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Lambsquarters/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Lambsquarters/7.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Lambsquarters/8.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="large-crabgrass" class="section level2">
+<h2>Large Crabgrass</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Large crabgrass
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+grassy
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Densely hairy leaf and sheath with a large membrane-like ligule. Leaves
+up to 8 inches (20 cm) long and 1/8-3/8 inches (3-10 mm) wide. Ligules
+around 1-2 mm long and are membranous with a flat end with uneven teeth.
+Leaf sheaths turn dark red or maroon with age. Stems are upright or
+sometimes prostrate and flat, spreading and branched at the nodes.
+Flowers are a seed head composed of 4-6 spikes, each about 1.5-7 in
+(3.8-18 cm) long. Root system is fibrous.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Seedlinghave sheaths and blades with a densely hairy, membranous ligule.
+Seedlings upright with leaves rolled into the bud. First leaf blade is
+lanceolate to linear.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Digitaria sanguinalis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://weedid.missouri.edu/weedinfo.cfm?weed_id=89"
+class="uri">https://weedid.missouri.edu/weedinfo.cfm?weed_id=89</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Large%20crabgrass/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Large%20crabgrass/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Large%20crabgrass/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Large%20crabgrass/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Large%20crabgrass/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="morningglory" class="section level2">
+<h2>Morningglory</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Morningglory
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Plant growth is viney/climbing along the ground and vegetation and
+taproot. Leaves are 3 lobed, alternate and 2 to 5 inches (5 to 13 cm)
+long, with erect hairs. Stems run along the ground or climbing for up to
+10 feet long, with hairs. Flowers are 1 to 2 inches (25 to 50 mm) long
+purple-blue and white in color.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Cotyledons are indented, notched at the top and are very small.
+Cotyledons shallowly.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Ivyleaf Morningglory
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Ipomoea hederacea
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://www.ilsoyadvisor.com/on-farm/ilsoyadvisor/identifying-troublesome-broadleaf-weeds-soybeans"
+class="uri">https://www.ilsoyadvisor.com/on-farm/ilsoyadvisor/identifying-troublesome-broadleaf-weeds-soybeans</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Morningglory/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Morningglory/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Morningglory/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Morningglory/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Morningglory/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Morningglory/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Morningglory/7.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Morningglory/8.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Morningglory/9.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="palmer-amaranth" class="section level2">
+<h2>Palmer Amaranth</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Palmer amaranth
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Tall, erect plant growth habit up to 6.5 feet (2 m) tall. Leaves
+alternate with no haris, and are lance- or egg-shaped. Leaves are 2-8
+inches (5-20 cm) and up to 2.5 inches (6 cm), white veins on underside.
+Leaves are on long petioles. One central stem occurs from which lateral
+branchs come off. Flowers are small and green in tightly packed
+panicles, with some in leaf axils as well.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Hypocotyl stems typically have no hairs and are red in color. Cotyledons
+are narrow up to a 1/2 inch long (12 mm) and green-red color on top
+surface. Cotyledon lower surface have reddish tint. First true leaves
+are alternate, ovate in shape and slightly notched at the tip.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Palmer pigweed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Amaranthus palmeri
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://weedid.missouri.edu/weedinfo.cfm?weed_id=14"
+class="uri">https://weedid.missouri.edu/weedinfo.cfm?weed_id=14</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Palmer%20amaranth/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Palmer%20amaranth/10.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Palmer%20amaranth/11.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Palmer%20amaranth/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Palmer%20amaranth/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Palmer%20amaranth/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Palmer%20amaranth/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Palmer%20amaranth/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Palmer%20amaranth/7.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Palmer%20amaranth/8.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Palmer%20amaranth/9.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="purslane" class="section level2">
+<h2>Purslane</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Purslane
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+opposite
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Plant grows as a prostrate succulent and tolerates drought. Leaves
+alternate or opposite, 1/4-1.25 inches (6-32 mm) long. Leaves spatulate
+(round at apex and narrow at base). Leaves thick, succulent, and have
+smooth margins. Stems are succulent, smooth, and prostrate with
+branching and no hairs. Flowers are yellow with 5 petals, about 3/16-3/8
+inch (5-10 mm) wide. Flowers found in leaf axil or end of branches.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Cotyledons long and succulent with no hairs. Young leaves opposite and
+maroon to red on lower surface.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Portulaca oleracea
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://weedid.missouri.edu/weedinfo.cfm?weed_id=228"
+class="uri">https://weedid.missouri.edu/weedinfo.cfm?weed_id=228</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Purslane/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Purslane/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Purslane/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Purslane/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="redroot-pigweed" class="section level2">
+<h2>Redroot Pigweed</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Redroot pigweed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Tall plant growthup to 6.5 feet (2 m) tall. Leaves alternate and ovate
+shape with petioles about 1/2 inch (12 mm) in length. Leaves with wavy
+margins and hairs on lower leaf surface. Stems tall and branched with
+few short hairs on upper stem. Flowers smal and green at end of panicles
+and in leaf exils. Roots are a shall taproot, usually red in color.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Hypocotyl stem usually without hairs and red in color near the base.
+Cotyledons narrow around 1/2-3/8 inch (10-12 mm) in width and green-red
+on top. Cotyledon lower surface reddish tint. Young leaves are alternate
+and ovate in shape and slight notch at the apex.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Amaranthus retroflexus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://weedid.missouri.edu/weedinfo.cfm?weed_id=15"
+class="uri">https://weedid.missouri.edu/weedinfo.cfm?weed_id=15</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Redroot%20pigweed/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Redroot%20pigweed/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Redroot%20pigweed/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Redroot%20pigweed/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Redroot%20pigweed/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Redroot%20pigweed/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Redroot%20pigweed/7.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="velvetleaf" class="section level2">
+<h2>Velvetleaf</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Velvetleaf
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Tall plant growth habit. Leaves alternate, heart shaped with a pointed
+tip. Leaves 2-6 inches (5-15 cm) long with hairsand toothed margins.
+Leaves have palmate veneation and exude bad odor when crushed. Stems
+tall up to 7 feet (2.1 m) tall and covered with hairs. Flowers have
+yellow-orange petals and on short stalks and 1/2-1 inch (12-24mm) wide.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Hypocotyl stems have soft hairs. 1 cotyledon is heart-shaped and one is
+round, covered with short hairs. First leaves are alternate,
+heart-shaped, and have toothed margins.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Abutilon theophrasti
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://weedid.missouri.edu/weedinfo.cfm?weed_id=1"
+class="uri">https://weedid.missouri.edu/weedinfo.cfm?weed_id=1</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Velvetleaf/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Velvetleaf/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Velvetleaf/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Velvetleaf/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Velvetleaf/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Velvetleaf/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Velvetleaf/7.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Velvetleaf/8.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="waterhemp" class="section level2">
+<h2>Waterhemp</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Waterhemp
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+This pigweed species is slender and erect seedling with green or reddish
+foliage. Leaves alternate and variable shaped from ovate to lanceolate
+or oblong. Leaves are waxy and have a short petiole compared to redroot
+pigweed. Stems lacking pubescence and has fibrous roots and taproot.
+Seeds are small around 1/8 inch (3 mm) long. Glyphosate, and PPO
+resistance populations have been found.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Seedling leaves are oar shaped. First leaves are lance shaped and have a
+small notch at the tip of the leaf. Stems are red.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Common waterhemp, Tall Waterhemp
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Amaranthus rudis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Emergence Start
+</td>
+<td style="text-align:left;">
+2022-05-15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Emergence End
+</td>
+<td style="text-align:left;">
+2022-07-30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://www.ilsoyadvisor.com/on-farm/ilsoyadvisor/identifying-troublesome-broadleaf-weeds-soybeans"
+class="uri">https://www.ilsoyadvisor.com/on-farm/ilsoyadvisor/identifying-troublesome-broadleaf-weeds-soybeans</a>
+<a
+href="https://ipcm.wisc.edu/download/weeds/Waterhemp-Fact-Sheet-Final-Draft.1_2.pdf"
+class="uri">https://ipcm.wisc.edu/download/weeds/Waterhemp-Fact-Sheet-Final-Draft.1_2.pdf</a>
+<a href="https://weedid.missouri.edu/weedinfo.cfm?weed_id=319"
+class="uri">https://weedid.missouri.edu/weedinfo.cfm?weed_id=319</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Waterhemp/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Waterhemp/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Waterhemp/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Waterhemp/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Waterhemp/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Waterhemp/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Waterhemp/7.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Waterhemp/8.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="yellow-foxtail" class="section level2">
+<h2>Yellow Foxtail</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Yellow foxtail
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+grassy
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+summer annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Clumping weed that looks similar to Giant foxtail. Leaf blades up to 12
+in (30 cm) long and 7-12mm in width. Leaves have long silky hairs at the
+base only. Ligule is a fringe of hairs up to 2 mm in length. Stems are
+erect, flattened without hairs, wth a red tint at the base (up to 3 ft
+or 1 m tall). Flowers are a panicle up to 6 in (15 cm) long. Spikelets
+around 3 mm long that turn yellow at maturity. Roots are fibrous.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Leaves are in the bud and sheaths without hairs. On the upper surface
+near the base, there are some long silky hairs. Ligule is fringe of
+hairs about 1/2 mm long.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Setaria glauca
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://weedid.missouri.edu/weedinfo.cfm?weed_id=257"
+class="uri">https://weedid.missouri.edu/weedinfo.cfm?weed_id=257</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Yellow%20foxtail/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Yellow%20foxtail/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Yellow%20foxtail/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Yellow%20foxtail/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Yellow%20foxtail/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+<div id="winter-annual" class="section level1">
+<h1>Winter Annual</h1>
+<div id="common-vetch" class="section level2">
+<h2>Common Vetch</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Common vetch
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+winter annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Slender and viney plant growth. Has narrow leaflets and tendrils at the
+end of leaves. Stems climb on other vegetation and the ground and grow
+up to 3.5 feet (1.1 m). Flowers are in pairs on stalks and are 0.75 to
+1.25 inch (19 to 32 mm) long. Flowers are usually purple, but are
+sometimes white.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+No cotyledons. First leaves are 1 pair of opposite, linear leaflets.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Garden vetch, Oregon vetch
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Vicia sativa
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://content.ces.ncsu.edu/common-vetch#"
+class="uri">https://content.ces.ncsu.edu/common-vetch#</a>:~:text=Common%20vetch%20(Vicia%20sativa)%20is,the%20ends%20of%20the%20leaves.
+<a href="https://weedid.missouri.edu/weedinfo.cfm?weed_id=307"
+class="uri">https://weedid.missouri.edu/weedinfo.cfm?weed_id=307</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Common%20vetch/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20vetch/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20vetch/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20vetch/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20vetch/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Common%20vetch/6.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="henbit" class="section level2">
+<h2>Henbit</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Henbit
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+opposite
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+winter annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Small branched plant with opposite leaves and fibrous roots. Leaves with
+veins and crinkled with soft hairs on upper surface. Lower leaves on
+petioles, while upper leaves are sessile and deeply lobed. Stems are
+square and green-purple colored. Pink and purple flowers in April, but
+possibly in March or November too. Flowers in whorls and sepals have 5
+teeth. Fruits are egg-shaped and have white spots, producing around 200
+seeds.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Cotyledons oval, 1/8 to 1/2 inch (3-12mm) long. Lower stems become
+purple over time. Base of the cotyledon is notched where the petiole
+joins. Young leaves are on petiole and circle-heart shaped with a
+crinkly upper side. Hairs on upper leaf surface and near veins of lower
+leaf.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Dead nettle, blind nettle
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Lamium amplexicaule
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Flowering Start
+</td>
+<td style="text-align:left;">
+March
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Flowering End
+</td>
+<td style="text-align:left;">
+May
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="http://weeds.cropsci.illinois.edu/images/Henbit/index.htm"
+class="uri">http://weeds.cropsci.illinois.edu/images/Henbit/index.htm</a>
+<a href="https://cropwatch.unl.edu/2020/identifying-fall-emerging-weeds"
+class="uri">https://cropwatch.unl.edu/2020/identifying-fall-emerging-weeds</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Henbit/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Henbit/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Henbit/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Henbit/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Henbit/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Henbit/6.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="mallow" class="section level2">
+<h2>Mallow</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Mallow
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+winter annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Leaves round on a long petiole and short hairs. Margins are rounded and
+crinkled. Roots are a taproot with some secondary fiberous roots. White
+to purple five petal flowers and fruits look like small buttons.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Cotlyedons heart-shaped, 3/16- 1/4 inch (5-7 mm) long and 1/ inch (3 mm)
+wide. 3 main veins and hairy. Young leaves are alternate, crinkled, and
+circular with a toothed margin and hairs.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Button weed, Round leaf mallow, Round dock
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Malva neglecta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="http://weeds.cropsci.illinois.edu/images/Common%20mallow/index.htm"
+class="uri">http://weeds.cropsci.illinois.edu/images/Common%20mallow/index.htm</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Mallow/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Mallow/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Mallow/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Mallow/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Mallow/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Mallow/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Mallow/7.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="marestail-horseweed" class="section level2">
+<h2>Marestail (Horseweed)</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Marestail (Horseweed)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+winter annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Basal rosette plant, with stem reaching up to 6 feet (2 meters) tall.
+Found in disturbed areas/no-till fields. Leaves at the base slightly
+toothed about 2-3 inches (5-7.5 cm) long. Leaves alternate, linear, and
+simple and get smaller higher on the plant. Panicle of flowers are white
+about 1/16 inch (1.5 mm) to 1/8 inch (3 mm) long. Can be winter
+annual(fall emergent) or summer annual (spring emergent).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Cotyledons oval and about 1/16 to 1/5 inch (2-3 mm) long. Young leaves
+are egg-shaped with a toothed margin and are hairy.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative Name
+</td>
+<td style="text-align:left;">
+Horseweed, Canadian Horseweed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Conyza canadensis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Emergence Start
+</td>
+<td style="text-align:left;">
+2022-04-15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Flowering Start
+</td>
+<td style="text-align:left;">
+June
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Flowering End
+</td>
+<td style="text-align:left;">
+September
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://crops.extension.iastate.edu/encyclopedia/horseweed-marestail"
+class="uri">https://crops.extension.iastate.edu/encyclopedia/horseweed-marestail</a>
+<a href="https://www.extension.purdue.edu/extmedia/gwc/gwc-9-w.pdf"
+class="uri">https://www.extension.purdue.edu/extmedia/gwc/gwc-9-w.pdf</a>
+<a
+href="https://www.ilsoyadvisor.com/on-farm/ilsoyadvisor/identifying-troublesome-broadleaf-weeds-soybeans"
+class="uri">https://www.ilsoyadvisor.com/on-farm/ilsoyadvisor/identifying-troublesome-broadleaf-weeds-soybeans</a>
+<a href="https://cropwatch.unl.edu/2020/identifying-fall-emerging-weeds"
+class="uri">https://cropwatch.unl.edu/2020/identifying-fall-emerging-weeds</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Marestail%20(Horseweed)/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Marestail%20(Horseweed)/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Marestail%20(Horseweed)/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Marestail%20(Horseweed)/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Marestail%20(Horseweed)/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Marestail%20(Horseweed)/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Marestail%20(Horseweed)/7.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="wild-mustard" class="section level2">
+<h2>Wild Mustard</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Wild mustard
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+alternate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Life Cycle
+</td>
+<td style="text-align:left;">
+winter annual
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Upright plant growth habit. Taproot thin and branched, also with fibrous
+roots. Leaves egg-oval shaped, alternate, stiff hairs and deep veins.
+Lower leaves of the mature plant have long petioles, lobes, and are the
+widest. Upper leaves are less hairy, less lobes and sometimes toothed
+edges, short petioles. Flowers are in raceme clusters on end of branches
+about 13/32 inch (1.5 cm). Flowers have 4 yellow petals up to 1/2 inch
+(12 mm) long.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Seedling
+</td>
+<td style="text-align:left;">
+Cotyledons are kidney-heart shaped and 3/16 inch (5 mm) long and 5/16
+inch (8mm) wide. Cotyledon tip has a slight indent. Young leaves are
+oblong or egg-shaped, alternate, with wavy-toothed edges, stiff hairs.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Brassica kaber
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://blogs.cornell.edu/weedid/wild-mustard/"
+class="uri">https://blogs.cornell.edu/weedid/wild-mustard/</a> <a
+href="https://weedid.missouri.edu/weedinfo.cfm?weed_id=263"
+class="uri">https://weedid.missouri.edu/weedinfo.cfm?weed_id=263</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/weed/Wild%20mustard/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Wild%20mustard/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Wild%20mustard/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Wild%20mustard/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Wild%20mustard/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Wild%20mustard/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/weed/Wild%20mustard/7.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+
+
+
+Copyright 2018 Adam H Sparks
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+% Weeds 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+
+```{r, include=FALSE}
+
+# Connect to the google account 
+# Build a guide
+# User authetification for scouts 
+# publish using Rstudio connect? or save the guide in google folder 
+
+library("here")
+library("googledrive")
+library("googlesheets4")
+library("ggplot2")
+library("dplyr")
+library("tidyr")
+library("stringr")
+library("magick")
+library("data.table")
+library("DT")
+library(kableExtra)
+# browseURL("https://babichmorrowc.github.io/post/google-account-creds/")
+# browseURL("https://datascienceplus.com/how-to-use-googlesheets-to-connect-r-to-google-sheets/")
+ 
+ 
+
+# install.packages("reshape2")
+# Authorize googlesheets4
+googlesheets4::gs4_auth(email = "mladencucak@gmail.com",
+                        cache = ".secrets",
+                        use_oob = TRUE)
+googledrive::drive_auth(email = "mladencucak@gmail.com", # Replace with your email!
+                        cache = ".secrets",
+                        use_oob = TRUE)
+
+# Destination of the sheet
+urlfile <-
+  "https://docs.google.com/spreadsheets/d/1Lw5gphz5RBx5WbVxlc5s0_Y9XCImkdCWwKZh3hgU0zE/edit?usp=sharing"
+
+(sheets <- 
+  googlesheets4::sheet_names(urlfile))
+
+weed <- 
+  googlesheets4::read_sheet(urlfile, sheet = "Weed" )
+
+weed <- 
+weed %>% 
+  mutate(emergence_start = as.character(emergence_start)) %>% 
+  mutate(emergence_end = as.character(emergence_end))
+
+wls <- 
+split(weed, f = weed$life_cycle)
+
+# get function for formating the table 
+source(here("scr/fun/img.R"))
+
+```
+ 
+ 
+```{r, results="asis",echo=FALSE, fig.align='center'}
+ 
+  
+  for (i in names(wls)) {
+    # i = 1;y = 1
+    cat("\n")
+    cat("#", str_to_title(i), "\n") # Create second level headings with the names.
+    
+    wlsf <-
+      split(wls[[i]], f = wls[[i]][, "name"])
+    
+    for (y in names(wlsf)) {
+      # y=1
+      cat("\n")
+      cat("##", str_to_title(y), "\n") # Create second level headings with the names.
+      dfft <-
+        wlsf[[y]][colSums(!is.na(wlsf[[y]])) > 0] %>%
+        mutate(pivot.col = 3) %>%
+        select(-c(Weed)) %>%
+        pivot_longer(-pivot.col) %>%
+        mutate(value = ifelse(name == "Latin name" ,  paste0("*",value, "*"),value)) %>% 
+
+        mutate(name = str_to_title(name)) %>%
+        mutate(name = str_replace_all(name, "_", " ")) %>%
+        select(-pivot.col)    
+        
+        dfft <-
+      GetKable(dfft, font_size)
+  
+      
+      
+      print(dfft)
+      dff <- wlsf[[y]]
+      imgs <-
+        list.files(
+          here("img/weed", pull(dff[1, "name"])),
+          all.files  = TRUE,
+          recursive = T,
+          full.names = T
+        )
+      
+      # imgs <- lapply(imgs, image_read)
+      
+      
+      # for (image in imgs) {
+      #   print(image)
+      # }
+      for (img in seq(imgs)) {
+        cat("![](", imgs[[img]], "){width=100%} \n\n", sep="")
+      }
+      
+          # add back to top link
+     cat(paste0("<a href=","#header", ">back to top</a>" ))
+ 
+     cat("\n")
+       
+    }
+   }
+```
+
+ 

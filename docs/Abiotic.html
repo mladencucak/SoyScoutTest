@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Abiotic</title>
+
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">SoyGuide</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="Diseases.html">Diseases</a>
+</li>
+<li>
+  <a href="Pests.html">Pests</a>
+</li>
+<li>
+  <a href="Weeds.html">Weeds</a>
+</li>
+<li>
+  <a href="Abiotic.html">Abiotic</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Abiotic</h1>
+
+</div>
+
+
+<div id="agronomic" class="section level1">
+<h1>Agronomic</h1>
+<div id="emergence" class="section level2">
+<h2>Emergence</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Agronomic
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Emergence
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+poor germination
+</td>
+</tr>
+</tbody>
+</table>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="foliar-fertilizer-injury" class="section level2">
+<h2>Foliar fertilizer injury</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Agronomic
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Foliar fertilizer injury
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Leaf tissue burnt and white/yellow-orange especially near the tips.
+Leaves curled. Reduced plant growth and yield, though many fields
+outgrow injury. Burns may be caused by UAN or urea application.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+<a
+href="https://www.mississippi-crops.com/2014/06/14/diagnosing-nutrient-deficiencies-in-mississippi-soybeans/"
+class="uri">https://www.mississippi-crops.com/2014/06/14/diagnosing-nutrient-deficiencies-in-mississippi-soybeans/</a>
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Foliar%20fertilizer%20injury/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Foliar%20fertilizer%20injury/2.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="fungicide-injury" class="section level2">
+<h2>Fungicide injury</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Agronomic
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Fungicide injury
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Leaf tissue between veins turns brown and yellow. May be confused with
+Sudden Death Syndrome. Occurs mostly in the upper canopy (but new
+leaves, emerged post-application would show no symptoms).
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Fungicide%20injury/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Fungicide%20injury/2.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="growth-regulator" class="section level2">
+<h2>Growth regulator</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Agronomic
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Growth regulator
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Leaves are stippled, with small white dots, turning red or yellow over
+time. Other virus-like symptoms with mottling/cupping.
+</td>
+</tr>
+</tbody>
+</table>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="herbicide-injury" class="section level2">
+<h2>Herbicide injury</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Agronomic
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Herbicide injury
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Herbicide injury symptoms vary depending on the type of herbicide or
+surfactant used. PPO inhibitor herbicides: Leaf spots and leaf blights
+that often mimic diseases. Glufosinate: Interveinal chlorosis, looks
+similar to sudden death syndrome. ACCase inhibitors: injury along leaf
+veins. Residual herbicides: Early season can resemble seedling blight.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Herbicide%20injury/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Herbicide%20injury/10.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Herbicide%20injury/11.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Herbicide%20injury/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Herbicide%20injury/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Herbicide%20injury/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Herbicide%20injury/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Herbicide%20injury/6.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Herbicide%20injury/7.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Herbicide%20injury/8.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Herbicide%20injury/9.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="planting" class="section level2">
+<h2>Planting</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Agronomic
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Planting
+</td>
+</tr>
+</tbody>
+</table>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="stand" class="section level2">
+<h2>Stand</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Agronomic
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Stand
+</td>
+</tr>
+</tbody>
+</table>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+<div id="environmental" class="section level1">
+<h1>Environmental</h1>
+<div id="drought" class="section level2">
+<h2>Drought</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Environmental
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Drought
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Leaves wilt and there is stunted/reduced plant growth. There is an
+increase in pod an flower abortion, thus reducing yield. Symptoms are
+similar to that of soybean cyst nematode.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Drought/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Drought/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Drought/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Drought/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="flooding" class="section level2">
+<h2>Flooding</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Environmental
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Flooding
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Plants may become stunted and and yellow. Plants may die, especially
+during V1-V2 and R1-R3. There may be an increase in root rot diseases.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Flooding/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Flooding/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Flooding/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Flooding/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="frost" class="section level2">
+<h2>Frost</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Environmental
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Frost
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Early season: Seedlings appear damaged or killed, brown and necrotic.
+Water-soaked lesions and discolored hypocotyls indicate plant death.
+Similar looking to seedling blight. Late season: Plants appear wilted
+and are completely frozen. Leaflets appear die and may fall off
+prematurely. Yield is reduced by smaller seed size and harvest of
+immature/green seed. May be confused with several diseases where leaves
+remain attached with wilting.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Frost/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Frost/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Frost/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Frost/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="hail" class="section level2">
+<h2>Hail</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Environmental
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Hail
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Hail tatters leaves and causes bruises or break stems. May lead to plant
+lodging later in the season. Yield loss may occur depending on the
+timing of the hail event (R1-R8 are greatest losses). Hail damage may
+allow for pathogens a point of entry into the plant.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Hail/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Hail/2.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Hail/3.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Hail/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="lightning" class="section level2">
+<h2>Lightning</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Environmental
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Lightning
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Circular patch of dead plants with clear edges. Plants in the center
+will be dead, with less damage as you move to the edge. Damage may be up
+to 30 feet (9 m) in diameter. Weeds in the area will also be killed.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Lightning/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Lightning/2.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="lodging" class="section level2">
+<h2>Lodging</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Environmental
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Lodging
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Excessive vegetative growth leads to plants falling over. Lodging
+reduces light penetration in the canopy. Lodging during R3-R5 growth
+stage is most detrimental and impacts yield by reducing harvestability.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+<a
+href="https://www.ilsoyadvisor.com/on-farm/ilsoyadvisor/agronomy-how-manage-lodging-risk"
+class="uri">https://www.ilsoyadvisor.com/on-farm/ilsoyadvisor/agronomy-how-manage-lodging-risk</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Lodging/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Lodging/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Lodging/3.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="soil-crusting" class="section level2">
+<h2>Soil Crusting</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Environmental
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Soil Crusting
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Soil crusting may occur after a hard rainfall. Soil crusting causes
+bent, twisted, or death to seedlings. Similar looking to some seedling
+diseases and herbicide injury.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Soil%20Crusting/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Soil%20Crusting/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Soil%20Crusting/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Soil%20Crusting/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="sunscald" class="section level2">
+<h2>Sunscald</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Environmental
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Sunscald
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Leaves in the uppermost canopy turn brown-tan on the underside. May be
+confused with symptoms of Cercospora leaf blight.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Sunscald/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Sunscald/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Sunscald/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Sunscald/4.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Sunscald/5.JPG"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+<div id="nutrient-disorders" class="section level1">
+<h1>Nutrient Disorders</h1>
+<div id="iron" class="section level2">
+<h2>Iron</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Nutrient Disorders
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Iron
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Occurs mostly on soils that contain lime, are calcareous with high pH.
+Also casued by inability for plants to uptake iron. Youngest leavesshow
+interveinal chlorosis, yellowing between green veins. Plant growth may
+be stunted. Similar to manganese deficiency and SCN damage.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+<a href="https://cropwatch.unl.edu/soils/soybean-nutrients"
+class="uri">https://cropwatch.unl.edu/soils/soybean-nutrients</a> <a
+href="https://www.mississippi-crops.com/2014/06/14/diagnosing-nutrient-deficiencies-in-mississippi-soybeans/"
+class="uri">https://www.mississippi-crops.com/2014/06/14/diagnosing-nutrient-deficiencies-in-mississippi-soybeans/</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Iron/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Iron/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Iron/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Iron/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Iron/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="magnesium" class="section level2">
+<h2>Magnesium</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Nutrient Disorders
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Magnesium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Pale green plants with interveinal pale mottling (yellow). Necrosis
+begins on the underside of leaves. Symptoms appear first on older, fully
+expanded leaves.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+<a href="https://cropwatch.unl.edu/soils/soybean-nutrients"
+class="uri">https://cropwatch.unl.edu/soils/soybean-nutrients</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Magnesium/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Magnesium/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Magnesium/3.JPG"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="manganese" class="section level2">
+<h2>Manganese</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Nutrient Disorders
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Manganese
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Leaves are pale yellow with chlorotic interveinal tissue. Necrosis in
+interveins over time. Plants look pale green-yellow, with some brown
+necrosis.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+<a href="https://cropwatch.unl.edu/soils/soybean-nutrients"
+class="uri">https://cropwatch.unl.edu/soils/soybean-nutrients</a> <a
+href="https://www.mississippi-crops.com/2014/06/14/diagnosing-nutrient-deficiencies-in-mississippi-soybeans/"
+class="uri">https://www.mississippi-crops.com/2014/06/14/diagnosing-nutrient-deficiencies-in-mississippi-soybeans/</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Manganese/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Manganese/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Manganese/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Manganese/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Manganese/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="nitrogen" class="section level2">
+<h2>Nitrogen</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Nutrient Disorders
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Nitrogen
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Leaves pale green-yellow and maybe brown in older leaves. Symptoms
+appear first on older, fully expanded leaves. May be related to poor
+soybean nodulation.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+<a href="https://cropwatch.unl.edu/soils/soybean-nutrients"
+class="uri">https://cropwatch.unl.edu/soils/soybean-nutrients</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Nitrogen/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Nitrogen/2.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Nitrogen/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Nitrogen/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Nitrogen/thumbnail.JPG"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="phosphorus" class="section level2">
+<h2>Phosphorus</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Nutrient Disorders
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Phosphorus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Spindly appearance with small, rounded leaflets and stunted growth. In
+some cases P deficient beans appear dark green-blue. Not easily
+identifiable without leaf tissue testing.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+<a
+href="https://www.mississippi-crops.com/2014/06/14/diagnosing-nutrient-deficiencies-in-mississippi-soybeans/"
+class="uri">https://www.mississippi-crops.com/2014/06/14/diagnosing-nutrient-deficiencies-in-mississippi-soybeans/</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Phosphorus/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Phosphorus/2.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="potassium" class="section level2">
+<h2>Potassium</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Nutrient Disorders
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Potassium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Green leaves with chlorotic leaf margins and begin to die from the tip.
+Leaves curl upward and some brown interveinal tissue. Symptoms occur
+more severely on older leaves, with localized symptoms. Middle to lower
+canopy, but can occur in upper canopy. Occurs in patches in fields. More
+prevalent in dry years.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+<a href="https://cropwatch.unl.edu/soils/soybean-nutrients"
+class="uri">https://cropwatch.unl.edu/soils/soybean-nutrients</a> <a
+href="https://www.mississippi-crops.com/2014/06/14/diagnosing-nutrient-deficiencies-in-mississippi-soybeans/"
+class="uri">https://www.mississippi-crops.com/2014/06/14/diagnosing-nutrient-deficiencies-in-mississippi-soybeans/</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Potassium/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Potassium/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Potassium/3.JPG"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="sulfur" class="section level2">
+<h2>Sulfur</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Nutrient Disorders
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Sulfur
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Plants green to yellow with some brown or bronze necrosis. Leaves pale
+green to yellow with no prominent veins or necrosis.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+<a
+href="https://cropwatch.unl.edu/soils/soybean-nutrientshttps://www.mississippi-crops.com/2014/06/14/diagnosing-nutrient-deficiencies-in-mississippi-soybeans/"
+class="uri">https://cropwatch.unl.edu/soils/soybean-nutrientshttps://www.mississippi-crops.com/2014/06/14/diagnosing-nutrient-deficiencies-in-mississippi-soybeans/</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Sulfur/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Sulfur/2.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="zinc" class="section level2">
+<h2>Zinc</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Nutrient Disorders
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Zinc
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Pale green plants with interveinal mottling and necrosis. Dark green
+veins. Symptoms first in older, fully expanded leaves.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+<a href="https://cropwatch.unl.edu/soils/soybean-nutrients"
+class="uri">https://cropwatch.unl.edu/soils/soybean-nutrients</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Zinc/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Zinc/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Zinc/3.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+<div id="unknown" class="section level1">
+<h1>Unknown</h1>
+<div id="green-soybean-syndrome" class="section level2">
+<h2>Green soybean syndrome</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Unknown
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Green soybean syndrome
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+All parts of the plant (pods, leaves, stems, etc.) remain green and show
+delayed maturity. Buds may proliferate. Seeds often remain green and
+swollen, with reduced pod and seed numbers. May cause yield loss
+depending on the tiing of the infection. May be caused by pesticide
+applications or artificial lighting.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+<a
+href="https://soybeanresearchinfo.com/soybean-disease/green-stem-disorder/"
+class="uri">https://soybeanresearchinfo.com/soybean-disease/green-stem-disorder/</a>
+Harbach, C. J., Allen, T. W., Bowen, C. R., Davis, J. A., Hill, C. B.,
+Leitman, M., … &amp; Hartman, G. L. (2016). Delayed senescence in
+soybean: Terminology, research update, and survey results from growers.
+Plant Health Progress, 17(2), 76-83.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Green%20soybean%20syndrome/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Green%20soybean%20syndrome/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Green%20soybean%20syndrome/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Green%20soybean%20syndrome/4.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Green%20soybean%20syndrome/5.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Green%20soybean%20syndrome/6.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Green%20soybean%20syndrome/thumbnail.JPG"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="green-stem-disorder" class="section level2">
+<h2>Green stem disorder</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Unknown
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Green stem disorder
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Plants have green, fleshy stems and pods at the time of crop maturity.
+Non-senescent stems with dehisced petioles and normal mature pods.
+Individual plants and patches of plants may be affected. May be caused
+by stink bugs feeding, fungicide appl, viruses, or late emergence.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+References
+</td>
+<td style="text-align:left;">
+<a
+href="https://soybeanresearchinfo.com/soybean-disease/green-stem-disorder/"
+class="uri">https://soybeanresearchinfo.com/soybean-disease/green-stem-disorder/</a>
+Harbach, C. J., Allen, T. W., Bowen, C. R., Davis, J. A., Hill, C. B.,
+Leitman, M., … &amp; Hartman, G. L. (2016). Delayed senescence in
+soybean: Terminology, research update, and survey results from growers.
+Plant Health Progress, 17(2), 76-83.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/abio/Green%20stem%20disorder/1.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Green%20stem%20disorder/2.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Green%20stem%20disorder/3.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Green%20stem%20disorder/4.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/abio/Green%20stem%20disorder/thumbnail.JPG"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+
+
+
+Copyright 2018 Adam H Sparks
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Pests</title>
+
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">SoyGuide</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="Diseases.html">Diseases</a>
+</li>
+<li>
+  <a href="Pests.html">Pests</a>
+</li>
+<li>
+  <a href="Weeds.html">Weeds</a>
+</li>
+<li>
+  <a href="Abiotic.html">Abiotic</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Pests</h1>
+
+</div>
+
+
+<div id="defoliator" class="section level1">
+<h1>Defoliator</h1>
+<div id="bean-leaf-beetle" class="section level2">
+<h2>Bean leaf beetle</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Defoliator
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Bean leaf beetle
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Cerotoma trifurcata
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+BLB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Adults are 1/4 inch (6 mm) long and usually yellow, tan, or red with
+black triangular marks on its wings. BLB larvae are white and segmented
+with a brown head and brown at the posterior end. Larvae feed on soybean
+nodules and roots. Adults feed on cotyledons, stems, and leaves.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+VE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+Early season scouting for cotyledon, stem, and foliage damage from
+overwintering adults. Determine average percentage defoliation for
+plants in 5 areas of field and note the number of beetles per plant in
+the early season. Mid-season defoliation and beetle population
+estimates. Late season observe whether beetles are feeding on the pods
+(look for white paper membrane covering the seed). Look at 2 plants from
+5 areas of the field to count the number of pods with insect damage. Use
+a net to determine the number of beetles in 20 sweeps at 5 areas.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+2 generations per year Abundant near woods (overwintering location)
+Cause damage to early emerging soybean cotyledons and seedling leaves
+Rarely causes economic impact in early generation Primary vector for
+bean pod mottle virus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+30 percent defoliation until bloom, about 15 percent while pods are
+small and soft, and about 30 percent when pods start hardening
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://extension.entm.purdue.edu/fieldcropsipm/insects/bean-leaf-beetle.php"
+class="uri">https://extension.entm.purdue.edu/fieldcropsipm/insects/bean-leaf-beetle.php</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Bean%20leaf%20beetle/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Bean%20leaf%20beetle/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Bean%20leaf%20beetle/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Bean%20leaf%20beetle/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Bean%20leaf%20beetle/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Bean%20leaf%20beetle/6.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="grasshopper" class="section level2">
+<h2>Grasshopper</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Defoliator
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Grasshopper
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Melanoplus spp.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+GH
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+GH damage increases in dry conditions in years. Several species of
+grasshopper feeds leaf tissue. GH often move from nearby cut hay or
+small grain fields.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+V2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+Estimate the number of grasshoppers in 5 locations of the field. Count
+the number of grasshoppers that jump from an approximate square yard (90
+cm square). Check field edges for GH, since they move from edges across
+the field. Estimate defoliation in the top, middle, and bottom of the
+soybean canopy.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+Most GH overwinter as eggs in fence rows and grassy areas adjacent to
+soybean fields. Nymphs hatch in late May through July. Nymphs go through
+5-6 nymphal stages and become adults around 40-60 days. Adults feed on
+leaves primarily from July through September.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+Managment is required with 30-45 nymphs per square yard (90 cm square)
+in the early season Management is required is 8-14 adults are found in a
+square yard (90 cm square) 30 percent defoliation until bloom, about 15
+percent while pods are small and soft, and about 30 percent when pods
+start hardening
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://soybeanresearchinfo.com/soybean-pest/grasshoppers/"
+class="uri">https://soybeanresearchinfo.com/soybean-pest/grasshoppers/</a>
+<a
+href="https://extension.entm.purdue.edu/fieldcropsipm/insects/soybean-grasshopper.php"
+class="uri">https://extension.entm.purdue.edu/fieldcropsipm/insects/soybean-grasshopper.php</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Grasshopper/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Grasshopper/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Grasshopper/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Grasshopper/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Grasshopper/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Grasshopper/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Grasshopper/7.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="green-cloverworm" class="section level2">
+<h2>Green cloverworm</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Defoliator
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Green cloverworm
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Hypena scabra
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+GC
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Larvae are pale green with two white strips on each side of the body.
+Larvae are about 1.25 inches (31.8 mm) with 4 abdominal prolegs (loopers
+have 3, but are commonly confused). Adult moths overwinter in buildings
+and protected sites.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+V2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+If defoliation is present, use a net to sweep 5 areas of the field.
+Determine percentage defoliation for several plants in each area and
+estimate average defoliation for the field. Action threshold is eight or
+more worms per linear foot of row.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+Two generations per year 1st generation develops in May and June on
+legume crops The larvae fro the 2nd generation from late June to August
+(occasionally economically damaing)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+30 percent defoliation until bloom, about 15 percent while pods are
+small and soft, and about 30 percent when pods start hardening
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://extension.entm.purdue.edu/fieldcropsipm/insects/green-cloverworm.php"
+class="uri">https://extension.entm.purdue.edu/fieldcropsipm/insects/green-cloverworm.php</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Green%20cloverworm/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Green%20cloverworm/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Green%20cloverworm/3.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="japanese-beetle" class="section level2">
+<h2>Japanese beetle</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Defoliator
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Japanese beetle
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Popillia japonica
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+JB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Adults are approximately 1/2 inch (13 mm) long and are green with bronze
+colored wing covers. Larvae are 1/4 inch to 1 inch (6 to 25 mm) long and
+goes through three instars. Larvae feed on decaying plant material until
+overwintering. JB damage plants by skeletonizing leaves, stripping away
+tissue between large leaf veins and some small veins. Yield reductions
+are often low and control is usually not recommended.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+V2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+Take 20 sweeps with a net in 5 areas of a field Estimate the average
+defoliation across the field JB damage is not uniform across the field
+and only feed on the upper canopy
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+Larvae overwinter in soil until they emerge as pupae in May. Adult
+beetles emerge in June and are found in fields until September.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+30 percent defoliation until bloom, about 15 percent while pods are
+small and soft, and about 30 percent when pods start hardening
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://extension.entm.purdue.edu/fieldcropsipm/insects/soybean-japanese-beetle.php"
+class="uri">https://extension.entm.purdue.edu/fieldcropsipm/insects/soybean-japanese-beetle.php</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Japanese%20beetle/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Japanese%20beetle/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Japanese%20beetle/3.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="mexican-bean-beetle" class="section level2">
+<h2>Mexican bean beetle</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Defoliator
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Mexican bean beetle
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Epilachna varivestis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+MBB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+The MBB defoliate leaves similarly to the JB by skeletonizing leaves,
+stripping tissue between the veins. Adult beetles are terrapin shaped
+and slightly larger than 0.25 inch long. Adults are yellow to copper
+colored and have 16 black spots. Larvae are yellow and covered with
+spines with 4 larval stages and the largest reaching 1/3 inch (8.5 mm).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+V2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+Estimate the average percentage defoliation level for the field. Take 20
+net sweeps in five areas of the field to assess the population size.
+Determine the amount of damage to pods due to insect damage, though MBB
+rarely damages developing beans.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+Adults overwinter under plant debris and in protecrted areas Eggs are
+laid in clusters of 40-50 on the underside of soybean leaves Larvae
+emerge in June through September and go through four stages Pupae emerge
+from July until October and attach to the underside of leaves
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+30 percent defoliation until bloom, about 15 percent while pods are
+small and soft, and about 30 percent when pods start hardening
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://extension.entm.purdue.edu/fieldcropsipm/insects/mexican-bean-beetle.php"
+class="uri">https://extension.entm.purdue.edu/fieldcropsipm/insects/mexican-bean-beetle.php</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Mexican%20bean%20beetle/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Mexican%20bean%20beetle/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Mexican%20bean%20beetle/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Mexican%20bean%20beetle/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="silver-spotted-skipper" class="section level2">
+<h2>Silver-spotted skipper</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Defoliator
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Silver-spotted skipper
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Epargyreus clarus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+SSS
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Adults are butterflies with brown wings and a large white spot on the
+underside of each hind wing. Wingspan around 2 inches (51 mm). Eggs are
+green with red on top. Larve are up to 2 inches (51 mm) in length.
+Larvae body is yellow with stripes and the head is dark red to brown
+with bright orange prolegs. Adults prefer forest edges, swamps, and
+areas where nectar can be found.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+V2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+Scouting is similar to any defoliator by estimating damage across the
+field and larva counts using a sweep net. Typically localized feeding by
+larvae, but adults can also be seen feeding on flowers later in the
+season. Look for larva in leaves rolled together into shelters.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+SSS larvae live in leaf shelters they form for protection When mature,
+larvae pupate in leaf nests and overwinter as pupae Adults lay their
+eggs in the fall on the host plant or directly nearby
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+30 percent defoliation until bloom, about 15 percent while pods are
+small and soft, and about 30 percent when pods start hardening
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://entnemdept.ufl.edu/creatures/bfly/silver-spotted_skipper.htm"
+class="uri">https://entnemdept.ufl.edu/creatures/bfly/silver-spotted_skipper.htm</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Silver-spotted%20skipper/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Silver-spotted%20skipper/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Silver-spotted%20skipper/3.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="slugs" class="section level2">
+<h2>Slugs</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Defoliator
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Slugs
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Deroceras spp.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Soft-bodied, legless, gray gastropods from 1/2 inch to 4 inches in
+length (13-102 mm). Slugs are favored by plant residue on the soil
+surface and moist conditions. They feed on decaying organic matter and
+plant foliage, feeding mostly at night. Slugs leave a slimy
+silver-colored trail behind their path.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+VE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+V2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+Baits can be used to attract slugs and slug pellets can be used with a
+goal of 4-6 pellets per square foot.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+Slugs lay translucent round eggs in the spring which hatch in about 1
+month, about early May in Pennsylvania. They live for a year or more and
+overwinter as adults or eggs. The are often active at night and on
+cloudy days.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+An average of one to two slugs per shingles over a few weeks; otherwise,
+heavy feeding on cotyledons and unifoliate leaves that is causing plant
+death
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://extension.entm.purdue.edu/fieldcropsipm/insects/soybean-slugs.php"
+class="uri">https://extension.entm.purdue.edu/fieldcropsipm/insects/soybean-slugs.php</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Slugs/1.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Slugs/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Slugs/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Slugs/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Slugs/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Slugs/6.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Slugs/7.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Slugs/8.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Slugs/9.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="white-tailed-deer" class="section level2">
+<h2>White-tailed deer</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Defoliator
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+White-tailed deer
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Odocoileus virginianus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+Deer
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/White-tailed%20deer/1.jpeg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+<div id="piercing-sucking" class="section level1">
+<h1>Piercing-sucking</h1>
+<div id="brown-marmorated-stink-bug" class="section level2">
+<h2>Brown marmorated stink bug</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Piercing-sucking
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Brown marmorated stink bug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Halyomorpha halys
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+BMSB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Adults are over 0.5 inches long (17 mm) and are brown with a “shield”
+shape. Adult antennae have lighter bands and dark bands on the rear of
+the front pair of wings. Nymphal instars are yellowish red in the first
+instar and progress to white with reddish spots in fifth instar. Nymph
+legs, head, and thorax are black, with red eyes.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+V2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+Most susceptible to BMSB from R4-R7 Adults often aggregate in certain
+areas of the field, starting in the edge of fields 8-20 sweeps with a
+net to estimate the population of BMSB in several areas in a field
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+Eggs are deposited from May through August in masses of 20-30 eggs on
+underside of leaves. Eggs hatch and go through 5 nymphal instar molts.
+Adults emerge late April to mid-May.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+3.5 stink bugs per 15 sweeps in 30-inch-row soybeans; 2.5 stink bugs per
+15 sweeps in narrow-row beans; or one stink bug per foot of row.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://extension.psu.edu/brown-marmorated-stink-bug"
+class="uri">https://extension.psu.edu/brown-marmorated-stink-bug</a> <a
+href="https://soybeanresearchinfo.com/soybean-pest/stink-bugs/"
+class="uri">https://soybeanresearchinfo.com/soybean-pest/stink-bugs/</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Brown%20marmorated%20stink%20bug/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Brown%20marmorated%20stink%20bug/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Brown%20marmorated%20stink%20bug/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Brown%20marmorated%20stink%20bug/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Brown%20marmorated%20stink%20bug/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Brown%20marmorated%20stink%20bug/6.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="green-stink-bug" class="section level2">
+<h2>Green stink bug</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Piercing-sucking
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Green stink bug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Acrosternum hilare
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+GSB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Nymphs are reddish brown and remain near egg masses. Second and third
+instar and they become light green with black and white stripes. Fourth
+and fifth instars are green with yellow and black stripes. Adults are
+over 1/2 inch (12.5 mm) long and are flattened, shield-shaped bugs that
+are bright green. Lay yellow to green eggs that turn pink-gray over
+time.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+GSB cause injury by puncturing pods and sucking fluid from beans. Look
+for spots on beans and beans with hardened, knotty appearance that fall
+of the plants. Seeds may be small, shriveled, or discolored. Take 20
+sweeps with a sweep net in 5 areas an destimate the number of BSB after
+soybean pod formation. Scout along the edges of a field to determine if
+there are numberous BSBs.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+Nymphs hatch from barrel-shaped eggs from mid-May throughout the growing
+season. GSB adults appear in soybean fields around mid-July until
+harvest. Adults overwinter in adjacent wooded and weedy areas.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+3.5 stink bugs per 15 sweeps in 30-inch-row soybeans; 2.5 stink bugs per
+15 sweeps in narrow-row beans; or one stink bug per foot of row.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://bookstore.ksre.ksu.edu/pubs/mf2891.pdf"
+class="uri">https://bookstore.ksre.ksu.edu/pubs/mf2891.pdf</a> <a
+href="https://extension.entm.purdue.edu/fieldcropsipm/insects/greenstinkbug.php"
+class="uri">https://extension.entm.purdue.edu/fieldcropsipm/insects/greenstinkbug.php</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Green%20stink%20bug/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Green%20stink%20bug/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Green%20stink%20bug/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Green%20stink%20bug/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="potato-leafhopper" class="section level2">
+<h2>Potato leafhopper</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Piercing-sucking
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Potato leafhopper
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Empoasca fabae
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+PLH
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Appear in Midwest by the end of April or early May and migrates into
+Pennsylvania around mid-May. Economic damage is not common unless there
+are adjacent alfalfa fields and soybean plants are small. Adult is
+yellow-green, wedge-shaped insect about 1/8 inch (3 mm) long. Nymphs
+look similar to adults, but are smaller and more yellow and cause the
+most damage. The life cycle lasts about 1 month.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+V2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+Plant symptoms are yellow patches, “hopper burn”, crinkling, and cupping
+of the leaves and looks similar to herbicide damage. Plants may be
+stunted, especially those under moisture stress. For V4 soybeans or
+younger, calculate the average number of leafhoppers on five plants,
+from five areas of a field. For soybean V5 or later, take 20 sweeps with
+a net in 5 areas of a field and calculate the number of leafhoppers per
+sweep. Treatment is recommended if 13 or more leafhoppers per plant.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+PLH spread from the south and Midwest every year around May every year.
+Nymphs are responsible for feeding on leaves with piercing-sucking
+mouthparts.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+V1, one per plant; V2, three per plant; V3, six per plant; R4, nine per
+plant; or four per sweep if plants are moisture stressed, and eight per
+sweep if plants not moisture stressed.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://extension.entm.purdue.edu/fieldcropsipm/insects/soybean-potato-leafhopper.php"
+class="uri">https://extension.entm.purdue.edu/fieldcropsipm/insects/soybean-potato-leafhopper.php</a>
+<a
+href="http://bulletin.ipm.illinois.edu/pastpest/articles/199914g.html"
+class="uri">http://bulletin.ipm.illinois.edu/pastpest/articles/199914g.html</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Potato%20leafhopper/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Potato%20leafhopper/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Potato%20leafhopper/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Potato%20leafhopper/4.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Potato%20leafhopper/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="soybean-aphid" class="section level2">
+<h2>Soybean aphid</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Piercing-sucking
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Soybean aphid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Aphis glycines
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+SA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Vectors several viruses. There are larger populations where buckthorn, a
+secondary host, is present. Populations have been low in Pennsylvania
+since major outbreaks occurred in the early 2000s.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+VE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+Fields should be monitored early in the season. Most impactful damage
+occurs during soybean reproductive growth stages. Aphid sampling
+includes counting aphids on 20-30 plants per field, counting mostly on
+leaf undersides.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+Soybean aphid spread from the Midwest into eastern states and impact
+Pennsylvania in late June to mid-July. The lifecycle is complicated
+because females are able to reproduce clones parthenogenically
+throughout the summer, rapidly increasing populations. Found in soybeans
+through August. Overwintering occurs on Rhamnus cathartica, buckthorn as
+eggs.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Minor (Why: Monitoring Some Disesases, When Do They Show Up, Spatial
+Distributions And Tieing Up With Agro Practices And Varieties Is Very
+Interesting, Especially From A Long Term Perspective)
+</td>
+<td style="text-align:left;">
+&lt; 250 aphids/plant, continue to scout
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+R1 to R4: = 250 aphids/plant, treament advised. R5: &gt; 250, treatment
+advised if populations are growing. R6: &gt; 250, treatment advised if
+under drought stress. R7-R8: Treatment not necessary.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://extension.entm.purdue.edu/fieldcropsipm/insects/soybean-aphid.php"
+class="uri">https://extension.entm.purdue.edu/fieldcropsipm/insects/soybean-aphid.php</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Soybean%20aphid/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Soybean%20aphid/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Soybean%20aphid/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Soybean%20aphid/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Soybean%20aphid/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="soybean-gall-midge" class="section level2">
+<h2>Soybean gall midge</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Piercing-sucking
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Soybean gall midge
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Resseliella maxima
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+SGM
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Adults 1/8 inch (2-3 mm) in length with mottled wings, long banded legs,
+and orange abdomen. Larvae are small, legless, and maggot-like. Larvae
+are clear to white-colored when young and turn bright orange as they
+mature.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+V2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+Begin scouting after V2 growth stage. Infestations are on the edges near
+previous soybean fields. Heavily infested plants wilt and die and stems
+become brittle and break near the soil line. Look for the larvae in the
+stem.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+The life cycle is not yet well understood. Larvae may overwinter in
+cocoons. Adults emerge around June and may extend into July.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://extension.umn.edu/soybean-pest-management/soybean-gall-midge-minnesota-soybean"
+class="uri">https://extension.umn.edu/soybean-pest-management/soybean-gall-midge-minnesota-soybean</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Soybean%20gall%20midge/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Soybean%20gall%20midge/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Soybean%20gall%20midge/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Soybean%20gall%20midge/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Soybean%20gall%20midge/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Soybean%20gall%20midge/6.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="threecornered-alfalfa-hopper" class="section level2">
+<h2>Threecornered alfalfa hopper</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Piercing-sucking
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Threecornered alfalfa hopper
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Spissistilus festinus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+TCAH
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Adults green and around 1/4 inch (6 mm) long, possibly with red-orange
+stripe above front legs. Eggs are white and oval 1/32 inch (1 mm) long
+with a rough surface. Nymphs are tan-yellow colored and spiny with white
+legs and abdomen. Damage is only found in no-till fields and more often
+in low population fields that are late planted.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+VE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+R1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+Damage from adults and nymphs includes sucking sap from the main stem,
+branches, and leaf petioles. Plants may lodge if enough feeding occurs,
+but significant yield reductions uncommon. Walk fields after a wind
+storm to look for any lodging due to hopper feeding. Check seedlings for
+damage and look for infested nymphs/girdled stems.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+TCAH hopper overwinters as eggs in plant tissue or as adults in
+protected grass areas. Nymphs emerge from overwintering eggs feed on
+weeds on field edges and move to soybean seedlings. Females produce
+30-40 eggs, typically in legume stems. Nymphs hatch 2-6 weeks later and
+it it takes 3-10 weeks (5 instars) to become adults.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+Hoppers infested 10 percent or more of plants less than 10-12 inches
+tall. Or when 50 percent of seedling plants are girdled. For plants
+setting pods, one hopper per sweep (100 per 100 sweeps) is sometimes
+recommended for treatment.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://soybeans.ces.ncsu.edu/three-cornered-alfalfa-hopper/"
+class="uri">https://soybeans.ces.ncsu.edu/three-cornered-alfalfa-hopper/</a>
+<a
+href="https://extension.tennessee.edu/publications/documents/W201.pdf"
+class="uri">https://extension.tennessee.edu/publications/documents/W201.pdf</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Threecornered%20alfalfa%20hopper/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Threecornered%20alfalfa%20hopper/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Threecornered%20alfalfa%20hopper/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Threecornered%20alfalfa%20hopper/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Threecornered%20alfalfa%20hopper/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Threecornered%20alfalfa%20hopper/thumnail.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="two-spotted-spider-mite" class="section level2">
+<h2>Two-spotted spider mite</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Piercing-sucking
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Two-spotted spider mite
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Tetranychus urticae
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+TSSM
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Populations increase in hot, dry conditions (at 90° F the life cycle is
+complete in 7 days). TSSM are just 1/50 inch (0.5 mm) and is usually
+greenish-yellow, but could be orange-red or brown. Overwintering females
+are orange, have an elliptical body, and bear 12 pairs of setae, while
+males are slightly smaller. Two large dark spots are present on the
+body. TSSM uses piercing-sucking mouthparts and penetrate leaf tissue
+mostly from the leaf underside.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+V2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+Use of a magnifying/hand lens will help to find.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+Eggs are attached to a fine silk on leaves and hatch within 3 days.
+Larvae emerge, go through 2 nymphal stages, and the adult. The life
+cycle takes between 5 and 25 days to complete depending on the
+temperature. Adults live 2-5 weeks and females may lay several hundred
+eggs during her life.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+Treat when plants along field margin or within field show discoloration
+and mites are present.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://extension.umn.edu/pest-management/twospotted-spider-mites-soybean"
+class="uri">https://extension.umn.edu/pest-management/twospotted-spider-mites-soybean</a>
+<a href="https://entnemdept.ufl.edu/creatures/orn/twospotted_mite.htm"
+class="uri">https://entnemdept.ufl.edu/creatures/orn/twospotted_mite.htm</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Two-spotted%20spider%20mite/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Two-spotted%20spider%20mite/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Two-spotted%20spider%20mite/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Two-spotted%20spider%20mite/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Two-spotted%20spider%20mite/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+<div id="seedling-pest" class="section level1">
+<h1>Seedling pest</h1>
+<div id="seed-corn-maggot" class="section level2">
+<h2>Seed corn maggot</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Category
+</td>
+<td style="text-align:left;">
+Seedling pest
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Insect Name
+</td>
+<td style="text-align:left;">
+Seed corn maggot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Latin Name
+</td>
+<td style="text-align:left;">
+Delia platura
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+SCM
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Description
+</td>
+<td style="text-align:left;">
+Early season pest of corn during damp, cool seasons, though rarely
+impacts soybean stands. Larvae are pale, yellow to white maggot that
+burrows in soybean seeds. The SCM is about 1/4 inch (6 mm) long and is
+cylindrical. Narrow body with small mouth hooks in the front of the
+body. Create narrow tunnels on cotyledons as they mine along the stem.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage Start
+</td>
+<td style="text-align:left;">
+seed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage End
+</td>
+<td style="text-align:left;">
+seed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Notes Scouting Method
+</td>
+<td style="text-align:left;">
+Sample areas where plants failed to emerge by digging up 2 feet (0.6 m)
+of linear row in 5 areas in field. Examine ungerminated seeds for damage
+and presence of maggots.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Comment (Lifecycle)
+</td>
+<td style="text-align:left;">
+Adult flies emerge in April and May. Adults lay eggs in moist soils.
+Eggs hatch within a few days and maggots feed on and burrow in seeds.
+Larvae feeds for 2-3 weeks until changing to the brown pupal stage and
+then to adults. The entire cycle takes around 21 days and several
+generations occur each year. Only the first generation may cuase yield
+losses.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Major
+</td>
+<td style="text-align:left;">
+No treatment actions; good idea to use a seed treatment if soil
+typically is cold and wet after soybean is planted, especially if a
+green living cover crop has been tilled.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://extension.entm.purdue.edu/fieldcropsipm/insects/soybean-seedcorn-maggot.php"
+class="uri">https://extension.entm.purdue.edu/fieldcropsipm/insects/soybean-seedcorn-maggot.php</a>
+<a href="https://fieldcropnews.com/2013/06/bugs-versus-slugs/"
+class="uri">https://fieldcropnews.com/2013/06/bugs-versus-slugs/</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/pest/Seed%20corn%20maggot/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Seed%20corn%20maggot/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Seed%20corn%20maggot/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Seed%20corn%20maggot/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/pest/Seed%20corn%20maggot/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+
+
+
+Copyright 2018 Adam H Sparks
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

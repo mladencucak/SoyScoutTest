@@ -1,0 +1,155 @@
+% Pests
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+
+```{r, include=FALSE}
+
+# Connect to the google account 
+# Build a guide
+# User authetification for scouts 
+# publish using Rstudio connect? or save the guide in google folder 
+
+library("here")
+library("googledrive")
+library("googlesheets4")
+library("ggplot2")
+library("dplyr")
+library("tidyr")
+library("stringr")
+library("magick")
+library("data.table")
+library("DT")
+library(kableExtra)
+# browseURL("https://babichmorrowc.github.io/post/google-account-creds/")
+# browseURL("https://datascienceplus.com/how-to-use-googlesheets-to-connect-r-to-google-sheets/")
+ 
+ 
+
+# install.packages("reshape2")
+# Authorize googlesheets4
+googlesheets4::gs4_auth(email = "mladencucak@gmail.com",
+                        cache = ".secrets",
+                        use_oob = TRUE)
+googledrive::drive_auth(email = "mladencucak@gmail.com", # Replace with your email!
+                        cache = ".secrets",
+                        use_oob = TRUE)
+
+# Destination of the sheet
+urlfile <-
+  "https://docs.google.com/spreadsheets/d/1Lw5gphz5RBx5WbVxlc5s0_Y9XCImkdCWwKZh3hgU0zE/edit?usp=sharing"
+
+(sheets <- 
+  googlesheets4::sheet_names(urlfile))
+
+pest <- 
+  googlesheets4::read_sheet(urlfile, sheet = "Pests" )
+
+
+pls <- 
+split(pest, f = pest$Category)
+# get function for formating the table 
+source(here("scr/fun/img.R"))
+
+
+```
+ 
+ 
+```{r, results="asis",echo=FALSE, fig.align='center'}
+
+# library(htmltools)
+# 
+# list_to_output <- list(data1 = iris,
+#                        data2 = mtcars,
+#                        data3 = airquality)
+  # plsf <- 
+  #   split(pls[[1]], f =pls[[1]][,2] )
+
+# for(i in names(plsf)){
+#   
+#   cat("\n") 
+#   cat("#", i, "\n") # Create second level headings with the names.
+#       dfft <-
+#       plsf[[i]]%>% 
+#       select( -c(url, "add comments about")) %>% 
+#       pivot_longer(-plant_part ) %>% 
+#       select(-plant_part) %>% 
+#       kbl()%>%
+#   kable_paper("hover", full_width = F)
+#   print(dfft)
+#   # print(
+#   #  tagList(
+#   #   DT::datatable(dfft)
+#   #     # dfft  
+#   # 
+#   #  )
+#   # )
+#   
+#   cat("\n")
+#   
+# }
+  
+for (i in names(pls)) {
+  # i = 1;y = 5
+  cat("\n")
+  cat("#", i, "\n") # Create second level headings with the names.
+  
+  plsf <-
+    split(pls[[i]], f = pls[[i]][, "Insect name"])
+  
+  for (y in names(plsf)) {
+    # y=1
+    cat("\n")
+    cat("##", y, "\n") # Create second level headings with the names.
+    dfft <-
+      plsf[[y]] %>%
+      select(-c(Date_start, Date_end)) %>%
+      select(-"...2") %>%
+      pivot_longer(cols = -"...1") %>%
+      select(-"...1") %>%
+      drop_na("value") %>%
+      
+      mutate(name = str_to_title(name)) %>%
+      mutate(name = str_replace_all(name, "_", " "))
+    
+     
+    
+    dfft <-
+      GetKable(dfft, font_size)
+    
+    
+    print(dfft)
+    dff <- plsf[[y]]
+    imgs <-
+      list.files(
+        here("img/pest", pull(dff[1, "Insect name"])),
+        all.files  = TRUE,
+        recursive = T,
+        full.names = T
+      )
+    
+    # imgs <- lapply(imgs, image_read)
+    
+    
+    # for (image in imgs) {
+    #   print(image)
+    # }
+    for (img in seq(imgs)) {
+      cat("![](", imgs[[img]], "){width=100%} \n\n", sep = "")
+    }
+    
+    # cat(paste0("![]", imgs), "\n")
+    
+    
+    # add back to top link
+    cat(paste0("<a href=","#header", ">back to top</a>" ))
+    
+    cat("\n")
+    
+  }
+}
+```
+
+ 
