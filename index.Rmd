@@ -18,8 +18,6 @@ knitr::opts_chunk$set(echo = FALSE   )
 ```
 
 ```{=html}
-<p>Any <strong>raw</strong> HTML content works here.
-For example, here is a Youtube video:</p>
 
 <iframe width="100%" height="800"
   src="https://felipedallalana.shinyapps.io/Temporal_shiny/"
