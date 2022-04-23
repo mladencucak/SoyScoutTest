@@ -21,12 +21,5 @@ navbar:
   left:
   - text: About
     href: about.html
-  - text: Data
-    icon: fa fa-table
-    href: data.html
-  - text: Codes
-    icon: fa fa-file-code-o
-    href: code.html
-  - text: Manuscript
-    icon: fa fa-file-text-o
-    href: manuscript.html
+  - text: Diseases
+    href: Diseases.html

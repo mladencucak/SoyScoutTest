@@ -1,0 +1,4458 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Diseases</title>
+
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">SoyGuide</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="Diseases.html">Diseases</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Diseases</h1>
+
+</div>
+
+
+<div id="foliar" class="section level1">
+<h1>Foliar</h1>
+<div id="aerial-web-blight" class="section level2">
+<h2>Aerial web blight</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Aerial web blight
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative name
+</td>
+<td style="text-align:left;">
+Aerial blight, Rhizoctonia aerial blight
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Rhizoctonia solani
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Southern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Commonly infects soybeans in rotation with rice (sheath blight in rice).
+High temperatures, heavy dew, and high humidity/rainfall favor Aerial
+web blight development. More likely in fields with narrow row spacing.
+Sclerotia and mycelia survive in soil and crop residue.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+A web of mycelium forms on leaves when they are wet. Leaves stick
+together, wilt, and become tattered. Dark brown sclerotia 1-5 mm long
+may be present plant tissue. Leaves with reddish-brown margins, erly
+leaf drop, or pod abortion. Wilted leaves and delayed maturity.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Lower to middle canopy, working upward
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Aerial%20web%20blight/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Aerial%20web%20blight/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Aerial%20web%20blight/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Aerial%20web%20blight/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="bacterial-blight" class="section level2">
+<h2>Bacterial blight</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Bacterial blight
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Pseudomonas syringae sub. glycines
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+V1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Common during wet weather or in irrigated fields.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Dark spots often with yellow halo. Lesions coalesce.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Upper canopy
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Bacterial%20blight/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Bacterial%20blight/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Bacterial%20blight/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Bacterial%20blight/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="bacterial-pustule" class="section level2">
+<h2>Bacterial pustule</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Bacterial pustule
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Xanthomonas axonopodis pv. glycines
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+v5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Development is favored in wet/rainy or humid conditions and warm or hot
+temperatures. Sporadic and unlikely to cause yield loss. Could be
+confused with bacterial blight, Spetoria brown spot, or soybean rust.
+Overwinters in crop residue and on seed. Transmitted by seed, wind,
+rain, or machinery.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Foliar lesions begin as small light green spots with yellow halos.
+Lesions turn brown at the center and raised pustules appear on the leaf
+surface.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Upper canopy
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://www.ag.ndsu.edu/publications/crops/soybean-disease-diagnostic-series#section-17"
+class="uri">https://www.ag.ndsu.edu/publications/crops/soybean-disease-diagnostic-series#section-17</a>
+<a
+href="https://soybeanresearchinfo.com/soybean-disease/bacterial-pustule/"
+class="uri">https://soybeanresearchinfo.com/soybean-disease/bacterial-pustule/</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Bacterial%20pustule/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Bacterial%20pustule/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Bacterial%20pustule/3.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="cercospora-leaf-blight" class="section level2">
+<h2>Cercospora leaf blight</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Cercospora leaf blight
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+CLB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Cercospora kikuchii
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+VC
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Warm, humid weather.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Bronzing of leaves in upper canopy.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Upper canopy, leaves exposed to sunlight
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Cercospora%20leaf%20blight/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Cercospora%20leaf%20blight/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Cercospora%20leaf%20blight/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Cercospora%20leaf%20blight/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="downy-mildew" class="section level2">
+<h2>Downy mildew</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Downy mildew
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Peronospora manshurica
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+V5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Weather dependent disease. Favored by cool, wet weather. Younger leaves
+are more susceptible.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Small, irregularly shaped lesions on the upper surfaces of leaves.
+Pale-green to light-yellow spots turn to yellow spots. Fuzzy gray tufts
+on the underside of infected leaves.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Young leaves
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Downy%20mildew/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Downy%20mildew/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Downy%20mildew/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Downy%20mildew/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="frogeye-leafspot" class="section level2">
+<h2>Frogeye leafspot</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Frogeye leafspot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+FELS
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+high
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Pseudomonas syringae sub. glycines
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Warm, humid weather. New leaves are susceptible.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Round, tan lesions with a reddish-purple border.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Mid to upper canopy
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Frogeye%20leafspot/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Frogeye%20leafspot/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Frogeye%20leafspot/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Frogeye%20leafspot/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="phyllosticta-leaf-spot" class="section level2">
+<h2>Phyllosticta leaf spot</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Phyllosticta leaf spot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Phyllosticta sojicola
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+V5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+More common in cool temperatures, wet conditions, or short crop
+rotations. Transmitted through infected seed. Does not typically impact
+yield. Could beconfused with frogeye leafspot or Septoria brown spot.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Leaf lesions begin as light green spots. Lesions become gray to tan with
+narrow dark purple to brown margin. Lesion shape is oval, circular, or
+irregular/V-shaped. Small black pycnidia (fungal specks) may be present
+in lesion center. Lesions may be present on petioles, stems, and pods.
+Necrotic holes in tissue may form at the center of lesions.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Upper leaf surface
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://cropprotectionnetwork.org/encyclopedia/phyllosticta-leaf-spot-of-soybean"
+class="uri">https://cropprotectionnetwork.org/encyclopedia/phyllosticta-leaf-spot-of-soybean</a>
+<a
+href="https://www.ag.ndsu.edu/publications/crops/soybean-disease-diagnostic-series#section-22"
+class="uri">https://www.ag.ndsu.edu/publications/crops/soybean-disease-diagnostic-series#section-22</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Phyllosticta%20leaf%20spot/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Phyllosticta%20leaf%20spot/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Phyllosticta%20leaf%20spot/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Phyllosticta%20leaf%20spot/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="powdery-mildew" class="section level2">
+<h2>Powdery mildew</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Powdery mildew
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+PM
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Erysiphe diffusa
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+When development occurs early in the season, yield losses may occur.
+Develops in cool conditions, &lt;75°F (24°C), and low humidity levels.
+Most severe in late-planted soybeans.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+White, powdery fungal mycelial growth on leaves and all aboveground
+parts. White fungal growth in small, irregular areas, until growing
+together. Tiny black chasmothecia may be present on the underside of
+leaves. Yellowing and vein necrosis may also develop. Seeds may be
+shriveled or not fully developed.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Upper leaf surfaces, petioles, and stems
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Powdery%20mildew/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Powdery%20mildew/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Powdery%20mildew/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Powdery%20mildew/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="septoria-brown-spot" class="section level2">
+<h2>Septoria brown spot</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Septoria brown spot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+high
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative name
+</td>
+<td style="text-align:left;">
+Brown spot, Septoria leaf spot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Septoria glycines
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+V1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Survives on residues.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Brown spots on lower leaves. Followed by yellowing and leaf drop.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Lower leaves
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Septoria%20brown%20spot/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Septoria%20brown%20spot/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Septoria%20brown%20spot/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Septoria%20brown%20spot/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="soybean-rust" class="section level2">
+<h2>Soybean rust</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Soybean rust
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low (in U.S.)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Phakopsora pachyrhizi; P. meibomiae
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Southern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Pustules may produce spores for several weeks. Cool, wet weather and
+high relative humidity are favorable conditions. Early season infection
+casues premature defoliation, reduced pod and seed number.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Small grayish lesions to begin. Later tan or reddish-brown spot
+approximately 5 mm in diameter. Mature lesions contain small pustules,
+usually on the lower leaf surface.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Initially in the lower canopy after canopy closure
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Soybean%20rust/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Soybean%20rust/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Soybean%20rust/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Soybean%20rust/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Soybean%20rust/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="target-spot" class="section level2">
+<h2>Target spot</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Target spot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Corynespora cassiicola
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Southern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+V1, R3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+V2, R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Wet conditions and cool soil temperatures are favorable. The fungus
+survives on plant residue and has a wide host range.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Forms reddish-brown lesions on leaves, often with yellow halos. Tiny
+spots/esions occur on stems and petioles. Small, sunken and dark lesions
+occur on pods.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Infects nearly all plant parts
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Target%20spot/1.jpeg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Target%20spot/2.jpeg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Target%20spot/thumbnail.jpeg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="wildfire" class="section level2">
+<h2>Wildfire</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Wildfire
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Pseudomonas syringae pv. tabaci
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Southern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+V5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Favored in wet and warm conditions. Survives on crop residue, seed, and
+alternative hosts. Inoculum can be spread by splashing water and rain.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Foliar lesions that are light-dark brown up to 1/2 inch (12 mm) in
+diameter. Wide yellow halos which streak across the leaf tissue. Dead
+spots in the lesions fall away and begin to look tattered or even cause
+defoliation.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Leaves
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a href="https://www.plantdiseases.org/wildfire-soybean-0"
+class="uri">https://www.plantdiseases.org/wildfire-soybean-0</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Wildfire/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Wildfire/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Wildfire/3.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+<div id="root_stem" class="section level1">
+<h1>Root_Stem</h1>
+<div id="anthracnose-stem-blight" class="section level2">
+<h2>Anthracnose stem blight</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Anthracnose stem blight
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+ASB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Colletotrichum truncatum
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+ASB causes damage when present early in the season. Warm, wet weather
+favors infection and development of ASB during bloom and pod
+development. The fungus survives the winter in crop residue and on
+infected seed.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Irregularly shaped red-dark brown blotches on stems and petioles in
+early reproductive stages. Petiole infection may results in a shepherd’s
+crook and premature defoliation. Foliar symptoms are reddish veins, leaf
+rolling, and premature defoliation. Pods may become empty. Signs include
+small black fungal bodies visible on stems, petioles, and pods. Seeds ay
+be infected and show gray or brown spots with black specks.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+stem and foliar during R5-R7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Anthracnose%20stem%20blight/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Anthracnose%20stem%20blight/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Anthracnose%20stem%20blight/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Anthracnose%20stem%20blight/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Anthracnose%20stem%20blight/5.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Anthracnose%20stem%20blight/6.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="brown-stem-rot" class="section level2">
+<h2>Brown stem rot</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Brown stem rot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+high
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Cadophora gregata, Phialophora gregata
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+North Central U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Infection of the roots. Easily confused with sudden death syndrome.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Yellowing and browning between leaf veins. Browning of the inner pith
+tissue.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Browning of the inner pith tissue of the lower stem
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Brown%20stem%20rot/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Brown%20stem%20rot/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Brown%20stem%20rot/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Brown%20stem%20rot/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="charcoal-rot" class="section level2">
+<h2>Charcoal rot</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Charcoal rot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+high
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Macrophomina phaseolina
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Disease more common in dry years or dry regions . Starts as premature
+yellowing followed by wilting and plant death . Survives in the soil as
+microsclerotia.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Small, hard, black microsclerotia in root and stem tissue. Patches of
+wilted plants.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Buildup of black microsclerotia visible near season end on and in stem
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Charcoal%20rot/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Charcoal%20rot/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Charcoal%20rot/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Charcoal%20rot/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="fusarium-root-rot-and-wilt" class="section level2">
+<h2>Fusarium root rot and wilt</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Fusarium root rot and wilt
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+high
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Fusarium spp.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+VE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Causes pre- and postermegence damping off. Young plants are at the
+greatest risk of root rot.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Discolored reddish-brown to dark-brown roots. Poorly developed roots
+with poor nodulation. Stunted and week seedlings. Plant wilting.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Seedlings
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Fusarium%20root%20rot%20and%20wilt/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Fusarium%20root%20rot%20and%20wilt/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Fusarium%20root%20rot%20and%20wilt/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Fusarium%20root%20rot%20and%20wilt/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="phytophthora-root-rot-and-stem-rot" class="section level2">
+<h2>Phytophthora root rot and stem rot</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Phytophthora root rot and stem rot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+high
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Phytophthora sojae
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Northeastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+VE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Occurs most commonly in poorly drained soils. Older infections may be
+confused with other stem diseases.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Early season seed rot and pre- and postemergence dampling-off.
+Water-soaked stems. Leaves chlorotic and plants my wilt/die. Dark brown
+lesion on the lower stem that extends up from the taproot.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Seedlings and stems of older plants
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Phytophthora%20root%20rot%20and%20stem%20rot/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Phytophthora%20root%20rot%20and%20stem%20rot/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Phytophthora%20root%20rot%20and%20stem%20rot/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Phytophthora%20root%20rot%20and%20stem%20rot/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Phytophthora%20root%20rot%20and%20stem%20rot/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="pythium-seedling-blight-and-root-rot" class="section level2">
+<h2>Pythium seedling blight and root rot</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Pythium seedling blight and root rot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Pythium aphanidermatum
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+VE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+V4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Impacts single plants or patches within fields.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Pre- or postemergence damping-off. Infected seedlings have water-soaked
+lesions. Soft, brownish-colored rotting tissue. Rotted roots cause older
+plants to become yellow or wilted.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Seedlings and roots of older plants
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Pythium%20seedling%20blight%20and%20root%20rot/1.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="red-crown-rot" class="section level2">
+<h2>Red crown rot</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Red crown rot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Calonectria ilicola
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Southern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+May occur in patches or single plants. Survives as microsclerotia in the
+soil or crop residue over winter and invades roots in the spring.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Red, sunken lesions occur on the plant immediately above the soil line.
+Red-orange spots (perithecia) present on the lower stem near the soil
+line. Foliar symptoms only observed later in the reproductive stages.
+Upper leaves show yellow spots between veins. Later leaves display
+large, chlorotic areas between veins, with green veins. Petioles
+eventually drop off the plant.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Stem at the soil line
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Red%20crown%20rot/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Red%20crown%20rot/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Red%20crown%20rot/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Red%20crown%20rot/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Red%20crown%20rot/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="rhizoctonia-seedling-blight-and-root-rot"
+class="section level2">
+<h2>Rhizoctonia seedling blight and root rot</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Rhizoctonia seedling blight and root rot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative name
+</td>
+<td style="text-align:left;">
+Rhizoctonia root rot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Rhizoctonia solani
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+VE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+V5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Warm and moist soil while plants are in early vegetative stages. Delayed
+planting in spring due to rain. High soil organic matter. Plant stress
+due to physical or chemical/herbicide injury. Causes most damage during
+early vegetative growth stages.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Rusty-brown, dry, sunken lesions on lower parts of stems. Dark brown
+lesions than girdle the stems near the soil. Plants stunted, yellow, and
+wilting.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Crown, stem of seedlings
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+<a
+href="https://www.ag.ndsu.edu/publications/crops/soybean-disease-diagnostic-series#section-4"
+class="uri">https://www.ag.ndsu.edu/publications/crops/soybean-disease-diagnostic-series#section-4</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Rhizoctonia%20seedling%20blight%20and%20root%20rot/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Rhizoctonia%20seedling%20blight%20and%20root%20rot/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Rhizoctonia%20seedling%20blight%20and%20root%20rot/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Rhizoctonia%20seedling%20blight%20and%20root%20rot/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="root-knot-nematode" class="section level2">
+<h2>Root-knot nematode</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Root-knot nematode
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+RKN
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Meloidogyne spp.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Southeast U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+V5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Several species of nematode present in Southern U.S, with M. aremaria
+present in peanut/soy rotation. Northern RKN not known to cause economic
+damage in soybean. Commonly found in sandy soils and in drought
+conidtions. Common weed/crop species (dandelion, purslane, cotton, and
+peanut) are also hosts. Cultivation and movement of soil can spread
+nematodes. Infected plants are more susceptible to other diseases, like
+Fusarium wilt.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Symptoms appear in patches. Plants appear to have reduced vigor and are
+wilting, yellowing and stutned/plant death. Canopies are often not
+completely closed. Underground symptoms include large galls on the
+roots.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Roots, canopy
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Root-knot%20nematode/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Root-knot%20nematode/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Root-knot%20nematode/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Root-knot%20nematode/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Root-knot%20nematode/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="southern-blight" class="section level2">
+<h2>Southern blight</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Southern blight
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative name
+</td>
+<td style="text-align:left;">
+Sclerotium blight
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Sclerotium rolfsii
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Southeast U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Hot temperatures are favorable (&gt;80°F, 27°C) and drought conditions
+with sandy soils, high organic matter. Can infect high numbers of plants
+within one field. Survives as sclerotia, tan-red-brown structures, over
+winter.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Wilting and plant death. Stem near the soil surface reveals dark lesion
+and white fungal growth.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Lower stem
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Southern%20blight/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Southern%20blight/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Southern%20blight/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Southern%20blight/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Southern%20blight/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="soybean-cyst-nematode" class="section level2">
+<h2>Soybean Cyst Nematode</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Soybean Cyst Nematode
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+SCN
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+high
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Heterodera glycines
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+V5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Patches in the field . The SCN can survive in the soil in protective
+cyst for many years. High pH soils, dry and sandy conditions may favor
+SCN.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Aboveground symptoms may not appear for years. Stunting, chlorosis, and
+delayed canopy closure. Tiny, lemon-shaped, white females attached to
+roots 1.5 months after soybean planting.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Look for white to yellow females on roots, but often no visible
+aboveground symptoms
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Soybean%20Cyst%20Nematode/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Soybean%20Cyst%20Nematode/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Soybean%20Cyst%20Nematode/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Soybean%20Cyst%20Nematode/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="stem-canker" class="section level2">
+<h2>Stem canker</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Stem canker
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Diaporthe phaseolorum var. caulivora; Diaporthe aspalathi
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Occurs in patches within fields or affects entire fields. Extended wet
+eather early in the season is favorable for development. Fungi survive
+in residue and soil for years and spores are splashed onto plants.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Initially small, reddish-brown lesions on lower part of the stem Lesions
+expand longitudinally and form cankers that girdle the stem. Interveinal
+chlorosis and necrosis, plant death.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Lower stem
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Stem%20canker/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Stem%20canker/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Stem%20canker/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Stem%20canker/4.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Stem%20canker/5.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="sudden-death-syndrome" class="section level2">
+<h2>Sudden death syndrome</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Sudden death syndrome
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+SDS
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+high
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Fusarium virguliforme
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+V1, R2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+V2, R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Infection of the roots. Seedlings susceptible . Fungal structures on
+taproot.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Yellowing and browning between leaf veins . Discoloration of vascular
+tissue. Light gray to brown taproot.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Low or compacted ares look for mottled leaves and infected taproot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Sudden%20death%20syndrome/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Sudden%20death%20syndrome/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Sudden%20death%20syndrome/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Sudden%20death%20syndrome/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="taproot-decline" class="section level2">
+<h2>Taproot Decline</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Taproot Decline
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Xylaria arbuscula
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Southern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+V6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Overwinters on plant residue. New within the last 15 years.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Interveinal chlorosis and necrosis. Blackened tap and lateral roots.
+Some seedlings and smaller vegetative plants may die-off. White myeclial
+growth in pith near the crown may be present along with vascular
+staining.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Leaves in lower canopy early and entire canopy by R5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Taproot%20Decline/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Taproot%20Decline/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Taproot%20Decline/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Taproot%20Decline/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="thielaviopsis-root-rot" class="section level2">
+<h2>Thielaviopsis root rot</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Thielaviopsis root rot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative name
+</td>
+<td style="text-align:left;">
+Black root rot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Thielaviopsis basicola
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+VE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+V2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Occurs on soybeans after the reproductive growth stages begin until
+harvest. Typically does not cause much yield loss.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Irregualry shape, red to dark-brown spots on the stems and petioles.
+Infection of the petioles may cause a shepherd’s crook or premature
+defoliation. Leaves show red discoloration of veins, leaf rolling, and
+premature defoliation. Young pods can have smaller or no seeds.
+Additional signs include small balck spines and spores on stems,
+petioles, and pods. Seeds may show brown discoloration and have
+gray-black specks.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Thielaviopsis%20root%20rot/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Thielaviopsis%20root%20rot/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Thielaviopsis%20root%20rot/3.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Thielaviopsis%20root%20rot/4.JPG"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Thielaviopsis%20root%20rot/5.JPG"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="white-mold-sclerotinia-stem-rot" class="section level2">
+<h2>White mold (Sclerotinia stem rot)</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+White mold (Sclerotinia stem rot)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+WM
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+high
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Alternative name
+</td>
+<td style="text-align:left;">
+Sclerotinia stem rot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Sclerotinia sclerotiorum
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+North Central U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Cool, wet weather. Check for apothecia on sclerotia at the soil surface.
+Common in fields with dense canopies and narrow rows. Sclerotia remain
+in the soil for multiple years.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Wilted, dying plants in patches in the field. White, fuzzy mycelial
+growth on the stem. Black sclerotia on/in the stem and pods.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Stem and pods
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/White%20mold%20(Sclerotinia%20stem%20rot)/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/White%20mold%20(Sclerotinia%20stem%20rot)/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/White%20mold%20(Sclerotinia%20stem%20rot)/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/White%20mold%20(Sclerotinia%20stem%20rot)/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+<div id="seed_and_pod" class="section level1">
+<h1>Seed_and_Pod</h1>
+<div id="phomopsis-seed-decay" class="section level2">
+<h2>Phomopsis seed decay</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Phomopsis seed decay
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Diaporthe longicolla
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Associated with stem decays. Colonization of seed. Especially present
+during delayed harvest.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Infected seeds are cracked, shrivelled, and have a chalky, white
+appearance. If infected seeds are planted, seedlings may have red-brown
+lesions on stems. Thin black lines may be present on lower internal
+portions of seedling stems.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+On seed and in pods
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Phomopsis%20seed%20decay/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Phomopsis%20seed%20decay/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Phomopsis%20seed%20decay/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Phomopsis%20seed%20decay/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="pod-and-stem-blight" class="section level2">
+<h2>Pod and stem blight</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Pod and stem blight
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Diaporthe phaseolorum var. sojae
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Wet weather nearing harvest increases disease. Can increase risk of seed
+decays.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Black fungal specks in linear rows on the stems of mature soybean plants
+(pycnidia). Infected seedlings may have reddish-brown streaks near the
+soil line.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+On stem, pods, petioles, nodes, or seeds
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Pod%20and%20stem%20blight/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Pod%20and%20stem%20blight/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Pod%20and%20stem%20blight/3.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="purple-seed-stain" class="section level2">
+<h2>Purple seed stain</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Purple seed stain
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Cercospora kikuchii
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+VC
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Purple discoloration of seed. Related to CLB. Warm, humid weather favors
+infection.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Distinct pink to dark-purple discoloration of seeds in small spots or
+entire seed surface.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+On seed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Purple%20seed%20stain/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Purple%20seed%20stain/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Purple%20seed%20stain/3.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+<div id="viral" class="section level1">
+<h1>Viral</h1>
+<div id="alfalfa-mosaic" class="section level2">
+<h2>Alfalfa mosaic</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Alfalfa mosaic
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Alfalfa mosaic virus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+V3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+More common in field borders and in fields near waterways. Alternative
+hosts are other legume crops, solanaceous crops. Can be transmitted by
+seed. Main vectors are aphids (15 different species, including soybean
+aphid).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Symptoms appear anytime during the growing season. Leaves are mottled in
+appearance ranging from bright yellow and dark green colors. Stunted
+plant growth. Seed coat NOT mottled.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Leaves, overall growth
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="bean-pod-mottle" class="section level2">
+<h2>Bean pod mottle</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Bean pod mottle
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Bean pod mottle virus (Comovirus)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Favorable conidtions are during rapid plant growth and cool
+temperatures. Vectored by bean leaf beetles. Other sources are by
+perennial weed host and infected seed.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Yellow and green mottled areas on leaves. Leaves puckered, blistered, or
+distorted. Decreased pod size and number.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Leaves, pods, and seeds
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Bean%20pod%20mottle/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Bean%20pod%20mottle/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Bean%20pod%20mottle/3.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="soybean-mosaic" class="section level2">
+<h2>Soybean mosaic</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Soybean mosaic
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Soybean mosaic virus (Potyvirus)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Concern is mostly reduced seed quality. Cool temperatures and high aphid
+populations lead to increased infection. Spread is primarily from
+planting infected seed.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Mosaic patterns with light and green areas on leaves. Chlorosis,
+lesions, and puckered/curled leaves.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Young and rapidly growing leaves
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Soybean%20mosaic/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Soybean%20mosaic/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Soybean%20mosaic/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Soybean%20mosaic/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="soybean-vein-necrosis" class="section level2">
+<h2>Soybean vein necrosis</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Soybean vein necrosis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Abbr
+</td>
+<td style="text-align:left;">
+SVNV
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Soybean Vein Necrosis Virus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+Midwest/Eastern U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Anywhere in canopy. Transmitted by thrips . Drier years favor thrips.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Yellow lesions begin near leaf veins. Lesions form red-brown
+spots/patches (1/4-1/2 inch in diameter). Death of plant tissue.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Generally along major leaf veins
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Soybean%20vein%20necrosis/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Soybean%20vein%20necrosis/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Soybean%20vein%20necrosis/3.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Soybean%20vein%20necrosis/4.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="tobacco-ringspot-virus" class="section level2">
+<h2>Tobacco ringspot virus</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; '>
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Tobacco ringspot virus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Nepovirus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Warm, dry weather favors disease development. Transmitted by infected
+seed and sometimes insect and nematode vectors.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Leaf distortion and discoloration. Distorted and lesions on the
+petioles. Stems may display shepherd’s crooking. Dead and brittle
+flowers and buds.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+End of the stems, leaves, and buds
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<img
+src="img/dis/Tobacco%20ringspot%20virus/3.jpeg"
+style="width:100.0%" /></li>
+</ul>
+<p><img
+src="img/dis/Tobacco%20ringspot%20virus/4.jpeg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Tobacco%20ringspot%20virus/5.jpeg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Tobacco%20ringspot%20virus/thumbnail.jpeg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+<div id="tobacco-streak" class="section level2">
+<h2>Tobacco streak</h2>
+<table class=" lightable-paper lightable-hover table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; ">
+<tbody>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Name
+</td>
+<td style="text-align:left;">
+Tobacco streak
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Importance
+</td>
+<td style="text-align:left;">
+low
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Pathogen
+</td>
+<td style="text-align:left;">
+Tobacco streak virus (Ilarvirus)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Geographical range
+</td>
+<td style="text-align:left;">
+North Central U.S.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage start
+</td>
+<td style="text-align:left;">
+R3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Stage end
+</td>
+<td style="text-align:left;">
+R8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Descriptions
+</td>
+<td style="text-align:left;">
+Transmitted by thrips and by infected seed.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Symptoms
+</td>
+<td style="text-align:left;">
+Dark spots on pods. Development of extra axillary braches and leaf and
+bud proliferation/shepherds crook. Leaf mosaic and dwarfing. Stunted
+growth and delayed maturity. Seed disoloration.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Where
+</td>
+<td style="text-align:left;">
+Pods and stems and seed discoloration
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 1in; ">
+Citation
+</td>
+<td style="text-align:left;">
+Mueller, D., Wise, K., Sisson, A., Smith, D., Sikora, E., Bradley, C.,
+and Roberston, A. 2016. A Farmer’s Guide to Soybean Diseases. The
+American Phytopathological Society.
+</td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="img/dis/Tobacco%20streak/1.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Tobacco%20streak/2.jpg"
+style="width:100.0%" /></p>
+<p><img
+src="img/dis/Tobacco%20streak/3.jpg"
+style="width:100.0%" /></p>
+<p><a href=#header>back to top</a></p>
+</div>
+</div>
+
+
+
+Copyright 2018 Adam H Sparks
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
