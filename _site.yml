@@ -17,7 +17,7 @@ output:
 bibliography: crossref.bib
 csl: chicago-author-date.csl
 navbar:
-  title: research-compendium-website
+  title: SoyGuide
   left:
   - text: About
     href: about.html
@@ -30,7 +30,3 @@ navbar:
   - text: Manuscript
     icon: fa fa-file-text-o
     href: manuscript.html
-  right:
-  - text: source
-    icon: fa-github-square
-    href: https://github.com/emdelponte/research-compendium-website

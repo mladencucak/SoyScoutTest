@@ -1,5 +1,12 @@
-% About
-
+---
+title: "Boots on the Ground"
+output:
+  html_document:
+    toc: false
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 ```{r, include=FALSE}
  
 library("here")
