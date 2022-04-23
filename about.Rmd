@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = FALSE, out.width="60%",fig.align="left"  )
 ```
 
 ```{r}
-knitr::include_app("https://yihui.shinyapps.io/miniUI/",
+knitr::include_app("https://felipedallalana.shinyapps.io/Temporal_shiny/",
   height = "600px")
 ```
 
@@ -27,7 +27,7 @@ knitr::include_app("https://dash.gallery/dash-global-living-standards/",
 For example, here is a Youtube video:</p>
 
 <iframe width="100%" height="400"
-  src="https://www.youtube.com/embed/s3JldKoA0zw?rel=0"
+  src="https://felipedallalana.shinyapps.io/Temporal_shiny/"
   frameborder="0" allow="autoplay; encrypted-media"
   allowfullscreen></iframe>
 ```

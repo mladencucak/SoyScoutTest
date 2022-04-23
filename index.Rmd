@@ -1,38 +1,39 @@
 % About
 
-The goal of this research is to examine the effects of.. This is part of a MSc/PhD study by.. Our collaborators are from the following institutes, etc.
+```{r, include=FALSE}
+ 
+library("here")
+ library("knitr")
+library("dplyr")
+```
 
-## Project team
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, out.width="60%",fig.align="left"  )
+```
 
-Project PI:
+```{r}
+knitr::include_app("https://felipedallalana.shinyapps.io/Temporal_shiny/",
+  height = "600px")
+```
 
-- Adam Sparks
-- University of Southern Queensland
+ 
+```{r}
+knitr::include_app("https://dash.gallery/dash-global-living-standards/",
+  height = "600px")
+```
 
-Members:
+```{=html}
+<p>Any <strong>raw</strong> HTML content works here.
+For example, here is a Youtube video:</p>
 
-- Member 1
-- Member 2
-- Member 3
-
-## Methodology
-
-Considerations about sampling, study design, randomization, factors, response variables, etc.
-
-
-## Citation
-
-Please cite this research compendium as:  
-
-> Authors, . Title of compendium. Online at https://doi.org/xxx/xxx
-
-## Licences
-
-Data: [CC-0](https://creativecommons.org/publicdomain/zero/1.0/) attribution requested in reuse
-Manuscript: [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)  
-Code: [MIT](https://opensource.org/licenses/MIT) year: 2017, copyright holder: Emerson Del Ponte
-
-## Contributions
-
-We welcome contributions from everyone. Before you get started, please see our [contributor guidelines](CONTRIBUTING.html). Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.html). By participating in this project you agree to abide by its terms.
-
+<iframe width="100%" height="400"
+  src="https://felipedallalana.shinyapps.io/Temporal_shiny/"
+  frameborder="0" allow="autoplay; encrypted-media"
+  allowfullscreen></iframe>
+```
+sasdas
+```{=html}
+<iframe width="100%" height="100%"
+  src="https://felipedallalana.shinyapps.io/Temporal_shiny/"
+  frameborder="0" allow="autoplay></iframe>
+```
