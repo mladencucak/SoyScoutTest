@@ -1,5 +1,12 @@
-% About
-
+---
+title: "Boots on the Ground"
+output:
+  html_document:
+    toc: false
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 ```{r, include=FALSE}
  
 library("here")
@@ -10,30 +17,23 @@ library("dplyr")
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, out.width="60%",fig.align="left"  )
 ```
-
-```{r}
-knitr::include_app("https://felipedallalana.shinyapps.io/Temporal_shiny/",
-  height = "600px")
-```
-
+# Test
+This is a 3-year interdisciplinary and collaborative regional project
+co-directed by the University of Wisconsin-Madison and The Pennsylvania
+State University, with collaborators in OH, MI, IA, MN, NE, and ND. The
+primary goal of the project is to analyze farmer data (yield, management
+practices and associated costs) in fields located across the
+North-Central US. Our primary focus is on increased profitability
+through improved knowledge of yield-limiting factors and best management
+practices.
+There are two major segments of this project:
+  
+-    The production survey available
+    [here](https://survey123.arcgis.com/share/4bacfb5607d147ac80c2fe282ad7206a)
  
-```{r}
-knitr::include_app("https://dash.gallery/dash-global-living-standards/",
-  height = "600px")
-```
 
-```{=html}
-<p>Any <strong>raw</strong> HTML content works here.
-For example, here is a Youtube video:</p>
+-    Intensive field scouting across several states (more info
+    [here](https://coolbean.info/soybean-research/data-driven-knowledge/))
 
-<iframe width="100%" height="400"
-  src="https://felipedallalana.shinyapps.io/Temporal_shiny/"
-  frameborder="0" allow="autoplay; encrypted-media"
-  allowfullscreen></iframe>
-```
-sasdas
-```{=html}
-<iframe width="100%" height="100%"
-  src="https://felipedallalana.shinyapps.io/Temporal_shiny/"
-  frameborder="0" allow="autoplay></iframe>
-```
+All data collected will be kept strictly confidential.
+ 
