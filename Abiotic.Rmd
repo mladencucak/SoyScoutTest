@@ -88,6 +88,8 @@ for (i in names(pls)) {
 
 
     print(dfft)
+    
+    # Get the lsit of images 
     dff <- plsf[[y]]
     imgs <-
       list.files(

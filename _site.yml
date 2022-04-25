@@ -27,5 +27,7 @@ navbar:
     href: Weeds.html
   - text: Abiotic
     href: Abiotic.html
+  - text: Beneficial
+    href: Beneficials.html
   - text: About
     href: about.html
