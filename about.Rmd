@@ -28,13 +28,13 @@ through improved knowledge of yield-limiting factors and best management
 practices.
 There are two major segments of this project:
   
--    The production survey available
-    [here](https://survey123.arcgis.com/share/4bacfb5607d147ac80c2fe282ad7206a) and checklist of info necessary 
+-    The **Production survey** is available
+    [here](https://survey123.arcgis.com/share/4bacfb5607d147ac80c2fe282ad7206a) and **checklist** of info necessary 
     to fill in the guide is [here](https://docs.google.com/document/d/1I1oa36d_ObWw13RJOL4bM_ONlPZi4OWQMujQPUF7BQo/edit?usp=sharing)
  
 
 -    Intensive field scouting across several states (more info
-    [here](https://coolbean.info/soybean-research/data-driven-knowledge/)) and the how to guide is [here](https://docs.google.com/document/d/1I1oa36d_ObWw13RJOL4bM_ONlPZi4OWQMujQPUF7BQo/edit?usp=sharing)
+    [here](https://coolbean.info/soybean-research/data-driven-knowledge/)) and the **How to** guide is [here](https://docs.google.com/document/d/1I1oa36d_ObWw13RJOL4bM_ONlPZi4OWQMujQPUF7BQo/edit?usp=sharing)
     
 
 ```{=html}
@@ -42,5 +42,6 @@ There are two major segments of this project:
 <div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embedded/02e6e129-1594-4ccf-b774-677a981fedca" id="kbUg_0~mFnz0"></iframe></div>
 ```
 
-All data collected will be kept strictly confidential.
+Please send any queries to mladen@psu.edu   
+All data collected for this project will be kept strictly confidential.
  
