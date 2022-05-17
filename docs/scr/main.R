@@ -246,10 +246,8 @@ rm(files, folder_id, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 
 
 
-########################################################
-# Weeds
-########################################################
 
+# Weeds -------------------------------------------------------------------
 
 #folder link to id
 weed.photo_folder = 
@@ -354,10 +352,10 @@ rm(files, folder_id, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 
 
 
-########################################################
-# Abiotic
-########################################################
 
+# Abiotic -----------------------------------------------------------------
+
+ 
 
 #folder link to id
 abio.photo_folder = 
@@ -460,9 +458,101 @@ rm(files, folder_id, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 
 
 
+# Beneficial  -------------------------------------------------------------
 
+#folder link to id
+bene.photo_folder =
+  "https://drive.google.com/drive/u/0/folders/1TvpECh-fE34X7RBKU31rmKZ-yNr9wYqt"
+folder_id = drive_get(as_id(bene.photo_folder))
+#find files in folder
+(files = drive_ls(folder_id))
+url.to.spreadsheet.with.links.to.images <-
+  "https://docs.google.com/spreadsheets/d/16XnrTvMZxI7iKHr8bJ7giwc7kUvgsArw-x2UAaK0EHs/edit#gid=0"
+beneimg <-
+  googlesheets4::read_sheet(url.to.spreadsheet.with.links.to.images)
+(files <- files[files$name != "images", ])
+(files <- files[files$name != "thumbnails", ])
+if (file.exists(here("img/bene")) == 0)
+  dir.create(here("img/bene"))
+#Remove all files in final folder for re-loading
+ sapply(list.files(
+  here("img/bene/"),
+  full.names = TRUE,
+  recursive = T
+), file.remove)
 
+#loop dirs and download files inside them
+for (i in seq_along(files$name)) {
+  #list files
+  i_dir = drive_ls(files[i,])
+  path <- here("img/bene", files$name[i])
+  #mkdir
+  if (!file.exists(path))
+    try(dir.create(path))
+  i_dir <-
+    i_dir[i_dir$name != "thumbnail.jpg",]
+  #download files
+  for (file_i in seq_along(i_dir$name)) {
+    #fails if already exists
+    try({
+      drive_download(as_id(i_dir$id[file_i]),
+                     path = str_c(path, "/", i_dir$name[file_i]))
+    })
+  }
+  Sys.sleep(.1)
+}
+ 
+paths <-
+  list.files(
+    here("img/bene"),
+    all.files  = TRUE,
+    recursive = T,
+    full.names = T
+  )
+beneimg <-
+  beneimg %>%
+  mutate(pth = "img/bene") %>%
+  unite(pth, c(pth, folder, name), sep = "/")
+# Get paths to the final image
+# Get
+for (i in seq(1:nrow(beneimg))) {
+  # i = 1
+  beneimg[i , "img_pth"] <-
+    paths[grepl(beneimg[i , "pth"] %>% pull(), paths)]
+  fin_pth <- paths[grepl(beneimg[i , "pth"] %>% pull(), paths)]
+  # # file.exists(fin_pth)
+  # fin_dir <- paste0(strsplit(fin_pth, "/")[[1]][1: length(strsplit(fin_pth, "/")[[1]])-1], collapse ="/")
+  # if(!file.exists(fin_dir))dir.create(fin_dir)
+  img <- image_read(beneimg[i , "img_pth"] %>% pull())
+  image_info(img)$width
+  border_width <- round((image_info(img)$width) / 30, 0)
+  # border_height <- round((image_info(img)$height  )/30,0)
+  img <-
+    image_border(img, "white", paste(border_width, border_width, sep = "x"))
+  heigh_offset <-  round((image_info(img)$height) / 120, 0)
+  caption_size <-  round((image_info(img)$width) / 50, 0)
+  img <-
+    image_annotate(
+      img,
+      pull(beneimg[i , "credits"]),
+      location = paste0("+1+", heigh_offset),
+      # location = paste0("+1", heigh_offset),
+      size = caption_size,
+      gravity = "south",
+      color = "black"
+    )
+  image_write(img, fin_pth)
+  gc()
+  Sys.sleep(.1)
+  print(paste(i, fin_pth))
+}
 
-
-
-
+rm(files,
+   folder_id,
+   i_dir,
+   file_i,
+   i,
+   jp_folder,
+   path,
+   paths,
+   caption_size)
