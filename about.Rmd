@@ -30,11 +30,11 @@ There are two major segments of this project:
   
 -    The **Production survey** is available
     [here](https://survey123.arcgis.com/share/4bacfb5607d147ac80c2fe282ad7206a) and **checklist** of info necessary 
-    to fill in the guide is [here](https://docs.google.com/document/d/1I1oa36d_ObWw13RJOL4bM_ONlPZi4OWQMujQPUF7BQo/edit?usp=sharing)
+    to fill in the survey is [here](https://docs.google.com/document/d/1I1oa36d_ObWw13RJOL4bM_ONlPZi4OWQMujQPUF7BQo/edit?usp=sharing)
  
 
 -    Intensive field scouting across several states (more info
-    [here](https://coolbean.info/soybean-research/data-driven-knowledge/)) and the **How to** guide is [here](https://docs.google.com/document/d/1I1oa36d_ObWw13RJOL4bM_ONlPZi4OWQMujQPUF7BQo/edit?usp=sharing)
+    [here](https://coolbean.info/soybean-research/data-driven-knowledge/)) and the **How to** guide is [here](https://docs.google.com/document/d/1q_V8d3wQTgxxyuOwsDbPoDL5ddiMfWvW0H8dK8oq_Yw/edit?usp=sharing)
     
 
 ```{=html}
