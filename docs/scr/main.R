@@ -16,7 +16,7 @@ library("magick")
 # browseURL("https://babichmorrowc.github.io/post/google-account-creds/")
 # browseURL("https://datascienceplus.com/how-to-use-googlesheets-to-connect-r-to-google-sheets/")
 
-# Log in google drive
+# Log in google drive test
 options(gargle_oauth_email  = "cropriskstatus@gmail.com")
 drive_deauth()
 drive_auth(path = ".secrets/client_secret.json")
