@@ -22,24 +22,21 @@ library("stringr")
 library("magick")
 library("data.table")
 library("DT")
-library(kableExtra)
+library("kableExtra")
+library("ftExtra")
 # browseURL("https://babichmorrowc.github.io/post/google-account-creds/")
 # browseURL("https://datascienceplus.com/how-to-use-googlesheets-to-connect-r-to-google-sheets/")
  
  
 
-# install.packages("reshape2")
-# Authorize googlesheets4
-googlesheets4::gs4_auth(email = "mladencucak@gmail.com",
-                        cache = ".secrets",
-                        use_oob = TRUE)
-googledrive::drive_auth(email = "mladencucak@gmail.com", # Replace with your email!
-                        cache = ".secrets",
-                        use_oob = TRUE)
+options(gargle_oauth_email  = "cropriskstatus@gmail.com")
+drive_deauth()
+drive_auth(path = ".secrets/client_secret.json")
+
 
 # Destination of the sheet
 urlfile <-
-  "https://docs.google.com/spreadsheets/d/1Lw5gphz5RBx5WbVxlc5s0_Y9XCImkdCWwKZh3hgU0zE/edit?usp=sharing"
+  "https://docs.google.com/spreadsheets/d/1Lw5gphz5RBx5WbVxlc5s0_Y9XCImkdCWwKZh3hgU0zE/edit#gid=60871206"
 
 (sheets <- 
   googlesheets4::sheet_names(urlfile))

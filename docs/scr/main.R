@@ -18,14 +18,11 @@ library("magick")
 
 
 
-# install.packages("reshape2")
-# Authorize googlesheets4
-googlesheets4::gs4_auth(email = "mladencucak@gmail.com",
-                        cache = ".secrets",
-                        use_oob = TRUE)
-googledrive::drive_auth(email = "mladencucak@gmail.com", # Replace with your email!
-                        cache = ".secrets",
-                        use_oob = TRUE)
+
+
+options(gargle_oauth_email  = "cropriskstatus@gmail.com")
+drive_deauth()
+drive_auth(path = ".secrets/client_secret.json")
 
 
 # get function for formating
@@ -38,7 +35,7 @@ source(here("scr/fun/img.R"))
 
 
 #folder link to id
-jp_folder = "https://drive.google.com/drive/u/0/folders/1MlWZjEHdXipBNEBURoMTYT1cBvQ7MPWK"
+jp_folder = "https://drive.google.com/drive/u/2/folders/1dvyulDFc9Fm2ALgIfMJOHBq6fOi_91Mr"
 folder_id = drive_get(as_id(jp_folder))
 
 #find files in folder
@@ -52,7 +49,7 @@ disimg <-
 files <- files[files$name != "images",]
 files <- files[files$name != "thumbnails",]
 
-#Remove all files in final folder for re-loading 
+# Remove all files in final folder for re-loading 
 # sapply(list.files(here("img/dis/"), full.names = TRUE, recursive = T), file.remove)
  
 #loop dirs and download files inside them
@@ -92,7 +89,7 @@ disimg <-
 
 # Get paths to the final image
 # Get 
-for (i in seq(27: nrow(disimg))) {
+for (i in seq(1: nrow(disimg))) {
   # i = 1
   disimg[i , "img_pth"] <- paths[grepl(disimg[i , "pth"] %>% pull(), paths)]
   
@@ -104,6 +101,7 @@ for (i in seq(27: nrow(disimg))) {
   # fin_dir <- paste0(strsplit(fin_pth, "/")[[1]][1: length(strsplit(fin_pth, "/")[[1]])-1], collapse ="/")
   # if(!file.exists(fin_dir))dir.create(fin_dir)
   
+  # Load the immage 
   img <- image_read(disimg[i , "img_pth"] %>% pull())
   
   image_info(img)$width
@@ -147,7 +145,7 @@ rm(files, folder_id, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 # Pests
 ###############################################
 #folder link to id
-jp_folder = "https://drive.google.com/drive/u/0/folders/1cS3PleejCQPDomAglAtYzjfg2usn3nIb"
+jp_folder = "https://drive.google.com/drive/u/2/folders/13TzQECqe_fn7guClyCDvbMzeyneXdP63"
 folder_id = drive_get(as_id(jp_folder))
 
 #find files in folder
@@ -159,13 +157,13 @@ url.to.spreadsheet.with.links.to.images <-
 pestimg <- 
   googlesheets4::read_sheet(url.to.spreadsheet.with.links.to.images )
 
-(files <- files[files$name != "images",])
-(files <- files[files$name != "thumbnails",])
+(files <- files[files$name != "images.xlsx",])
+(files <- files[files$name != "thumbnails.xlsx",])
 
 if(file.exists(here("img/pest"))==0)dir.create(here("img/pest"))
 
 #Remove all files in final folder for re-loading 
-# sapply(list.files(here("img/pest/"), full.names = TRUE, recursive = T), file.remove)
+sapply(list.files(here("img/pest/"), full.names = TRUE, recursive = T), file.remove)
 
 #loop dirs and download files inside them
 for (i in seq_along(files$name)) {

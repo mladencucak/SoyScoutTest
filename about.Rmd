@@ -38,7 +38,6 @@ There are two major segments of this project:
     
 
 ```{=html}
-
 <div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embedded/02e6e129-1594-4ccf-b774-677a981fedca" id="kbUg_0~mFnz0"></iframe></div>
 ```
 
