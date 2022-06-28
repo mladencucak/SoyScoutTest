@@ -1,10 +1,9 @@
-# Connect to the google account 
+# Connect to the Google account 
 # Build a guide
-# User authetification for scouts 
+# User authentication for scouts 
 # publish using Rstudio connect? or save the guide in google folder 
 
 library("here")
-
 library("googledrive")
 library("googlesheets4")
 library("ggplot2")
@@ -13,16 +12,18 @@ library("tidyr")
 library("stringr")
 library("magick")
 
+## Resources for publishing to RStudio, connecting with Google credentials,
+## connecting package googlesheets4 to connect to Google sheets
 # browseURL("https://babichmorrowc.github.io/post/google-account-creds/")
 # browseURL("https://datascienceplus.com/how-to-use-googlesheets-to-connect-r-to-google-sheets/")
 
-# Log in google drive test
+# Log into Google drive test
 options(gargle_oauth_email  = "cropriskstatus@gmail.com")
 drive_deauth()
 drive_auth(path = ".secrets/client_secret.json")
 
 
-# get function for formating
+# get function for formatting
 source(here("scr/fun/img.R"))
 
 ##############################################
@@ -31,17 +32,21 @@ source(here("scr/fun/img.R"))
 
 
 
-#folder link to id
+## Set folder path
+## This one is correct
 jp_folder = "https://drive.google.com/drive/u/2/folders/1dvyulDFc9Fm2ALgIfMJOHBq6fOi_91Mr"
-folder_id = drive_get(as_id(jp_folder))
-
-#find files in folder
-files = drive_ls(folder_id)
+## Retrieving files with IDs identified
+folder_ID_diseases = drive_get(as_id(jp_folder))
 
 
+# List files in folder
+files = drive_ls(folder_ID_diseases)
+
+## Reads the Google spreadsheet from the url 
 disimg <- 
   googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1AnfIYUZqze3x3O1LlepmbAsMvFGQpvcQx3b523lUxe4/edit#gid=0", 
                             sheet = "Disease" )
+
 
 files <- files[files$name != "images",]
 files <- files[files$name != "thumbnails",]
@@ -98,7 +103,7 @@ for (i in seq(1: nrow(disimg))) {
   # fin_dir <- paste0(strsplit(fin_pth, "/")[[1]][1: length(strsplit(fin_pth, "/")[[1]])-1], collapse ="/")
   # if(!file.exists(fin_dir))dir.create(fin_dir)
   
-  # Load the immage 
+  # Load the image 
   img <- image_read(disimg[i , "img_pth"] %>% pull())
   
   image_info(img)$width
@@ -123,7 +128,7 @@ for (i in seq(1: nrow(disimg))) {
     )
   
   img <- image_convert(img, "bmp")
-  img <- image_scale(img, "")
+  # img <- image_scale(img, "")
   
   image_write(img, fin_pth)
   gc()
@@ -134,7 +139,7 @@ for (i in seq(1: nrow(disimg))) {
 
 
 
-rm(files, folder_id, i_dir, file_i, i, jp_folder, path, paths,caption_size)
+rm(files, folder_ID_diseases, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 
 
 
@@ -143,14 +148,14 @@ rm(files, folder_id, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 ###############################################
 #folder link to id
 jp_folder = "https://drive.google.com/drive/u/2/folders/13TzQECqe_fn7guClyCDvbMzeyneXdP63"
-folder_id = drive_get(as_id(jp_folder))
+folder_ID_pests = drive_get(as_id(jp_folder))
 
 #find files in folder
-(files = drive_ls(folder_id))
+(files = drive_ls(folder_ID_pests))
 
 
 url.to.spreadsheet.with.links.to.images <- 
-  "https://docs.google.com/spreadsheets/d/1asffbRpcoz7LUrqdpkd6117wsADJGMo9rkuafei6eho/edit#gid=0"
+  "https://docs.google.com/spreadsheets/d/1hsYCTnm7HqSOQdFrGc_S7UNMsIhmPuKWhpRdddsUkYk/edit#gid=515938431"
 pestimg <- 
   googlesheets4::read_sheet(url.to.spreadsheet.with.links.to.images )
 
@@ -195,7 +200,7 @@ pestimg <-
 # Get paths to the final image
 # Get 
 for (i in seq(1: nrow(pestimg))) {
-  # i = 62
+  i = 30
   pestimg[i , "img_pth"] <- paths[grepl(pestimg[i , "pth"] %>% pull(), paths)]
   
   fin_pth <- paths[grepl(pestimg[i , "pth"] %>% pull(), paths)]
@@ -235,7 +240,7 @@ for (i in seq(1: nrow(pestimg))) {
 
 
 
-rm(files, folder_id, i_dir, file_i, i, jp_folder, path, paths,caption_size)
+rm(files, folder_ID_pests, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 
 
 
@@ -249,10 +254,10 @@ rm(files, folder_id, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 #folder link to id
 weed.photo_folder = 
   "https://drive.google.com/drive/u/0/folders/1CVRvmbzgZ4jgkb_FNGoO64_JH3q_ovOG"
-folder_id = drive_get(as_id(weed.photo_folder))
+folder_id_weeds = drive_get(as_id(weed.photo_folder))
 
 #find files in folder
-(files = drive_ls(folder_id))
+(files = drive_ls(folder_id_weeds_weeds))
 
 
 url.to.spreadsheet.with.links.to.images <- 
@@ -345,7 +350,7 @@ for (i in seq(1: nrow(weedimg))) {
 
 
 
-rm(files, folder_id, i_dir, file_i, i, jp_folder, path, paths,caption_size)
+rm(files, folder_id_weeds, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 
 
 
@@ -357,10 +362,10 @@ rm(files, folder_id, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 #folder link to id
 abio.photo_folder = 
   "https://drive.google.com/drive/u/0/folders/1YP1ZR8gPhL31_6GaUeNsHgoKVwe1xGBD"
-folder_id = drive_get(as_id(abio.photo_folder))
+folder_ID_abiotic = drive_get(as_id(abio.photo_folder))
 
 #find files in folder
-(files = drive_ls(folder_id))
+(files = drive_ls(folder_ID_abiotic))
 
 
 url.to.spreadsheet.with.links.to.images <- 
@@ -451,7 +456,7 @@ for (i in seq(1: nrow(abioimg))) {
 
 
 
-rm(files, folder_id, i_dir, file_i, i, jp_folder, path, paths,caption_size)
+rm(files, folder_ID_abiotic, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 
 
 

@@ -1,64 +1,93 @@
+# Planning ----------------------------------------------------------------
+
+## Flow:
 # Connect to the google account 
 # Build a guide
-# User authetification for scouts 
-# publish using Rstudio connect? or save the guide in google folder 
+# User authentication for scouts project
+# Publish using Rstudio connect? Or save the guide in google folder 
 
-library("here")
+## To do:
+# Update links from Mladen's drive to cropriskstatus
+# Address redundant names 
+# Clarify line questions
 
-library("googledrive")
-library("googlesheets4")
-library("ggplot2")
-library("dplyr")
-library("tidyr")
-library("stringr")
-library("magick")
 
+# Packages  ---------------------------------------------------------------
+# install.packages("reshape2") # Data manipulation (not in current use 6.23.22)
+
+library("here")  # Allows for easy file reference
+library("googledrive")  # Manages Google Drive
+library("googlesheets4")  # Interface to Google Sheets with Sheets API (app prog. interface)
+library("ggplot2")  # Figure creation
+library("dplyr")  # Data manipulation
+library("tidyr")  # Data manipulation
+library("stringr")  # Data manipulation via strings
+library("magick")  # Image processing
+
+
+
+# Resources and custom functions ---------------------------------------------------------------
+
+## RESOURCES
+## Guide to Publishing to RStudio: Connect w Google creds
 # browseURL("https://babichmorrowc.github.io/post/google-account-creds/")
+## Guide to using googlesheets to connect R to Google Sheets
 # browseURL("https://datascienceplus.com/how-to-use-googlesheets-to-connect-r-to-google-sheets/")
 
-
-
-# install.packages("reshape2")
-# Authorize googlesheets4
-googlesheets4::gs4_auth(email = "mladencucak@gmail.com",
-                        cache = ".secrets",
-                        use_oob = TRUE)
-googledrive::drive_auth(email = "mladencucak@gmail.com", # Replace with your email!
-                        cache = ".secrets",
-                        use_oob = TRUE)
-
-
-# get function for formating
+## CUSTOM FUNCTIONS
+## For formatting
 source(here("scr/fun/img.R"))
 
-##############################################
-# Diseases
-###############################################
+# Authorize access to Google Drive ----------------------------------------
 
 
+# googlesheets4
+googlesheets4::gs4_auth(email = "cropriskstatus@gmail.com",
+                        cache = ".secrets",
+                        use_oob = TRUE)
+# googledrive
+googledrive::drive_auth(email = "cropriskstatus@gmail.com", # Replace with your email!
+                        cache = ".secrets",
+                        use_oob = TRUE)
 
-#folder link to id
+
+# DISEASES #################################################################### 
+
+
+# Set path to folder and retrieve contents (as a dribble)
+### UPDATE FOLDER LOCATION 
 jp_folder = "https://drive.google.com/drive/u/0/folders/1MlWZjEHdXipBNEBURoMTYT1cBvQ7MPWK"
-folder_id = drive_get(as_id(jp_folder))
+folder_id_dis = drive_get(as_id(jp_folder))
 
-#find files in folder
+# Create list of files in the folder
 files = drive_ls(folder_id)
 
-
+# Access contents of image citations file as tibble object disimg
+### UPDATE FOLDER LOCATION
 disimg <- 
   googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1AnfIYUZqze3x3O1LlepmbAsMvFGQpvcQx3b523lUxe4/edit#gid=0", 
                             sheet = "Disease" )
 
+# Remove any files with terms 'images' or 'thumbnails' from the list of files 
+# contained in object files
+# WOULD IT BE BETTER TO GIVE THE NEXT TWO LINES NEW OBJECT NAMES IN CASE ONE FAILS
+# DUE TO A TYPO OR OTHER ACCIDENT?
 files <- files[files$name != "images",]
 files <- files[files$name != "thumbnails",]
 
-#Remove all files in final folder for re-loading 
-# sapply(list.files(here("img/dis/"), full.names = TRUE, recursive = T), file.remove)
- 
-#loop dirs and download files inside them
+# Remove files loaded from last session for complete re-loading of current files???
+# here("img/dis/") did not work locally while GitHub/SoyScoutTest was the working
+# directory, but that may be because there are no recorded sessions or that the
+# script was written to work in 10 min loops
+sapply(list.files(here("/img/dis/"), full.names = TRUE, recursive = T), file.remove)
+
+
+# Loop through all files in img/dis folder and download them, referencing files 
+# object created and modified above for a complete list
 for (i in seq_along(files$name)) {
+  # for specific file, i = specific file, referenced by number in files object
   # i = 1
-  #list files
+  # Create list of files
   i_dir = drive_ls(files[i, ])
   
   path <- here("img/dis",files$name[i])
