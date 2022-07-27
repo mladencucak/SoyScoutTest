@@ -1,63 +1,101 @@
+# Planning ----------------------------------------------------------------
+
+## Flow:
 # Connect to the Google account 
 # Build a guide
-# User authentication for scouts 
-# publish using Rstudio connect? or save the guide in google folder 
+# User authentication for scouts project
+# Publish using Rstudio connect? Or save the guide in Google folder 
 
-library("here")
-library("googledrive")
-library("googlesheets4")
-library("ggplot2")
-library("dplyr")
-library("tidyr")
-library("stringr")
-library("magick")
+## To do:
+# Address redundant names like multiple files objects, etc. in case of downstream 
+# failure.
 
-## Resources for publishing to RStudio, connecting with Google credentials,
-## connecting package googlesheets4 to connect to Google sheets
+## Done
+# Update file locations (6/27/22)
+
+
+# Packages  ---------------------------------------------------------------
+# install.packages("reshape2") 
+
+library("here")  
+library("googledrive")  
+library("googlesheets4")  
+library("ggplot2")  
+library("dplyr")  
+library("tidyr")  
+library("stringr") 
+library("magick")  
+
+
+
+# Resources and custom functions ---------------------------------------------------------------
+
+## RESOURCES
+## Guide to Publishing to RStudio: Connect w Google creds
 # browseURL("https://babichmorrowc.github.io/post/google-account-creds/")
+## Guide to using googlesheets to connect R to Google Sheets
 # browseURL("https://datascienceplus.com/how-to-use-googlesheets-to-connect-r-to-google-sheets/")
 
-# Log into Google drive test
+## CUSTOM FUNCTIONS
+## For formatting
+source(here("scr/fun/img.R"))
+
+# Authorize access to Google Drive ----------------------------------------
+
+## This works to give me access
 options(gargle_oauth_email  = "cropriskstatus@gmail.com")
 drive_deauth()
 drive_auth(path = ".secrets/client_secret.json")
 
-
-# get function for formatting
-source(here("scr/fun/img.R"))
-
-##############################################
-# Diseases
-###############################################
-
-
-
-## Set folder path
-## This one is correct
-jp_folder = "https://drive.google.com/drive/u/2/folders/1dvyulDFc9Fm2ALgIfMJOHBq6fOi_91Mr"
-## Retrieving files with IDs identified
-folder_ID_diseases = drive_get(as_id(jp_folder))
+# googlesheets4
+googlesheets4::gs4_auth(email = "cropriskstatus@gmail.com",
+                        cache = ".secrets",
+                        use_oob = TRUE)
+# googledrive
+googledrive::drive_auth(email = "cropriskstatus@gmail.com", # Replace with your email! MD - MY EMAIL DOESN'T WORK
+                        cache = ".secrets",
+                        use_oob = TRUE)
 
 
-# List files in folder
-files = drive_ls(folder_ID_diseases)
+# DISEASES #################################################################### 
 
-## Reads the Google spreadsheet from the url 
+
+# Set path to folder and retrieve contents (as a dribble)
+# Path is set to disease folder
+# Should I rename jp_folder in case of downstream issues? We don't want to accidentally
+# direct the pest section to the disease folder if something fails to be created later. 
+jp_folder = "https://drive.google.com/drive/folders/1dvyulDFc9Fm2ALgIfMJOHBq6fOi_91Mr"
+folder_id_dis = drive_get(as_id(jp_folder))
+
+# Create list of files in the folder
+# Again, specific item name?
+files = drive_ls(folder_id_dis)
+
+# Access contents of image citations file as tibble object disimg
 disimg <- 
-  googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1AnfIYUZqze3x3O1LlepmbAsMvFGQpvcQx3b523lUxe4/edit#gid=0", 
+  googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1M2TiKPGn2FpxZTvzx4XJ97OpAYwW-45ZtIvD3jEROIM/edit#gid=145702069", 
                             sheet = "Disease" )
 
-
+# Remove any files with terms 'images' or 'thumbnails' from the list of files found
+# in disease folder
+# Again, redundant names
 files <- files[files$name != "images",]
 files <- files[files$name != "thumbnails",]
 
-# Remove all files in final folder for re-loading 
-# sapply(list.files(here("img/dis/"), full.names = TRUE, recursive = T), file.remove)
- 
-#loop dirs and download files inside them
+# Remove files loaded from last session for complete re-loading of current files?
+# It makes a list of files found in the disease folder with full names and loops
+# through to make sure it's got everything, and then removes the files for a clean 
+# upload later on.
+sapply(list.files(here("/img/dis/"), full.names = TRUE, recursive = T), file.remove)
+
+
+# Loop through all files in img/dis folder and download them, referencing files 
+# object created above 
+# For every file name in files object, add to list i_dir
 for (i in seq_along(files$name)) {
+  # for specific file, i = specific file, referenced by number in files object
   # i = 1
-  #list files
+  # Create list of files
   i_dir = drive_ls(files[i, ])
   
   path <- here("img/dis",files$name[i])
@@ -68,7 +106,7 @@ for (i in seq_along(files$name)) {
   
   #download files
   for (file_i in seq_along(i_dir$name)) {
-   
+    
     #fails if already exists
     try({
       drive_download(
@@ -91,11 +129,11 @@ disimg <-
 
 # Get paths to the final image
 # Get 
-for (i in seq(1: nrow(disimg))) {
+for (i in seq(27: nrow(disimg))) {
   # i = 1
   disimg[i , "img_pth"] <- paths[grepl(disimg[i , "pth"] %>% pull(), paths)]
   
-   
+  
   fin_pth <- paths[grepl(disimg[i , "pth"] %>% pull(), paths)]
   
   
@@ -103,7 +141,6 @@ for (i in seq(1: nrow(disimg))) {
   # fin_dir <- paste0(strsplit(fin_pth, "/")[[1]][1: length(strsplit(fin_pth, "/")[[1]])-1], collapse ="/")
   # if(!file.exists(fin_dir))dir.create(fin_dir)
   
-  # Load the image 
   img <- image_read(disimg[i , "img_pth"] %>% pull())
   
   image_info(img)$width
@@ -128,7 +165,7 @@ for (i in seq(1: nrow(disimg))) {
     )
   
   img <- image_convert(img, "bmp")
-  # img <- image_scale(img, "")
+  img <- image_scale(img, "")
   
   image_write(img, fin_pth)
   gc()
@@ -139,19 +176,21 @@ for (i in seq(1: nrow(disimg))) {
 
 
 
-rm(files, folder_ID_diseases, i_dir, file_i, i, jp_folder, path, paths,caption_size)
+rm(files, folder_id_dis, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 
 
 
-##############################################
-# Pests
-###############################################
+
+
+# # PESTS -----------------------------------------------------------------
+
 #folder link to id
-jp_folder = "https://drive.google.com/drive/u/2/folders/13TzQECqe_fn7guClyCDvbMzeyneXdP63"
-folder_ID_pests = drive_get(as_id(jp_folder))
+jp_folder = "https://drive.google.com/drive/folders/13TzQECqe_fn7guClyCDvbMzeyneXdP63"
+folder_id_pest = drive_get(as_id(jp_folder))
+
 
 #find files in folder
-(files = drive_ls(folder_ID_pests))
+(files = drive_ls(folder_id_pest))
 
 
 url.to.spreadsheet.with.links.to.images <- 
@@ -159,13 +198,13 @@ url.to.spreadsheet.with.links.to.images <-
 pestimg <- 
   googlesheets4::read_sheet(url.to.spreadsheet.with.links.to.images )
 
-(files <- files[files$name != "images.xlsx",])
-(files <- files[files$name != "thumbnails.xlsx",])
+(files <- files[files$name != "images",])
+(files <- files[files$name != "thumbnails",])
 
 if(file.exists(here("img/pest"))==0)dir.create(here("img/pest"))
 
 #Remove all files in final folder for re-loading 
-sapply(list.files(here("img/pest/"), full.names = TRUE, recursive = T), file.remove)
+# sapply(list.files(here("img/pest/"), full.names = TRUE, recursive = T), file.remove)
 
 #loop dirs and download files inside them
 for (i in seq_along(files$name)) {
@@ -200,7 +239,7 @@ pestimg <-
 # Get paths to the final image
 # Get 
 for (i in seq(1: nrow(pestimg))) {
-  i = 30
+  # i = 62
   pestimg[i , "img_pth"] <- paths[grepl(pestimg[i , "pth"] %>% pull(), paths)]
   
   fin_pth <- paths[grepl(pestimg[i , "pth"] %>% pull(), paths)]
@@ -240,28 +279,27 @@ for (i in seq(1: nrow(pestimg))) {
 
 
 
-rm(files, folder_ID_pests, i_dir, file_i, i, jp_folder, path, paths,caption_size)
+rm(files, folder_id_pest, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 
 
 
 
 
-########################################################
-# Weeds
-########################################################
+# # WEEDS -----------------------------------------------------------------
+
 
 
 #folder link to id
 weed.photo_folder = 
-  "https://drive.google.com/drive/u/0/folders/1CVRvmbzgZ4jgkb_FNGoO64_JH3q_ovOG"
-folder_id_weeds = drive_get(as_id(weed.photo_folder))
+  "https://drive.google.com/drive/folders/1yDpRha96isITx7xwkxufqEsa6cob0aSB"
+folder_id_weed = drive_get(as_id(weed.photo_folder))
 
 #find files in folder
-(files = drive_ls(folder_id_weeds_weeds))
+(files = drive_ls(folder_id_weed))
 
 
 url.to.spreadsheet.with.links.to.images <- 
-  "https://docs.google.com/spreadsheets/d/1rHVMvOr_Q-nRI6fHe5rRknAmuEO7qseoiLc46SeqVXI/edit"
+  "https://docs.google.com/spreadsheets/d/19eoqL4g9j_JtTwEz28ikY0Ou3UTGmOOvagbdOU0d3AE/edit#gid=906340208"
 weedimg <- 
   googlesheets4::read_sheet(url.to.spreadsheet.with.links.to.images )
 
@@ -271,7 +309,7 @@ weedimg <-
 if(file.exists(here("img/weed"))==0)dir.create(here("img/weed"))
 
 #Remove all files in final folder for re-loading 
- # sapply(list.files(here("img/weed/"), full.names = TRUE, recursive = T), file.remove)
+# sapply(list.files(here("img/weed/"), full.names = TRUE, recursive = T), file.remove)
 
 
 #loop dirs and download files inside them
@@ -308,7 +346,7 @@ weedimg <-
   unite(pth, c(pth,folder, name), sep = "/")
 
 # Get paths to the final image
- 
+
 for (i in seq(1: nrow(weedimg))) {
   # i = 62
   weedimg[i , "img_pth"] <- paths[grepl(weedimg[i , "pth"] %>% pull(), paths)]
@@ -350,26 +388,24 @@ for (i in seq(1: nrow(weedimg))) {
 
 
 
-rm(files, folder_id_weeds, i_dir, file_i, i, jp_folder, path, paths,caption_size)
+rm(files, folder_id_weed, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 
 
 
-########################################################
-# Abiotic
-########################################################
+# ABIOTIC########################################################
 
 
 #folder link to id
 abio.photo_folder = 
-  "https://drive.google.com/drive/u/0/folders/1YP1ZR8gPhL31_6GaUeNsHgoKVwe1xGBD"
-folder_ID_abiotic = drive_get(as_id(abio.photo_folder))
+  "https://drive.google.com/drive/folders/1upgHZ-Tvk6M1J0k1Hs3aUgnnr9SqQRnh"
+folder_id_abio = drive_get(as_id(abio.photo_folder))
 
 #find files in folder
-(files = drive_ls(folder_ID_abiotic))
+(files = drive_ls(folder_id_abio))
 
 
 url.to.spreadsheet.with.links.to.images <- 
-  "https://docs.google.com/spreadsheets/d/1kuzmUzukeZHmReoerXrozlm4KS79GapN1j-NyVyYk3g/edit#gid=0"
+  "https://docs.google.com/spreadsheets/d/1Mr35xqBpnbwZGhZr49LxmOmupArAwtzYTj8c6Ri7cKs/edit#gid=186519958"
 abioimg <- 
   googlesheets4::read_sheet(url.to.spreadsheet.with.links.to.images )
 
@@ -456,7 +492,7 @@ for (i in seq(1: nrow(abioimg))) {
 
 
 
-rm(files, folder_ID_abiotic, i_dir, file_i, i, jp_folder, path, paths,caption_size)
+rm(files, folder_id_abio, i_dir, file_i, i, jp_folder, path, paths,caption_size)
 
 
 

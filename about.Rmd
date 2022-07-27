@@ -7,6 +7,7 @@ editor_options:
   markdown: 
     wrap: 72
 ---
+
 ```{r, include=FALSE}
  
 library("here")
@@ -25,22 +26,24 @@ primary goal of the project is to analyze farmer data (yield, management
 practices and associated costs) in fields located across the
 North-Central US. Our primary focus is on increased profitability
 through improved knowledge of yield-limiting factors and best management
-practices.
-There are two major segments of this project:
-  
--    The **Production survey** is available
-    [here](https://survey123.arcgis.com/share/4bacfb5607d147ac80c2fe282ad7206a) and **checklist** of info necessary 
-    to fill in the survey is [here](https://docs.google.com/document/d/1I1oa36d_ObWw13RJOL4bM_ONlPZi4OWQMujQPUF7BQo/edit?usp=sharing)
- 
+practices. There are two major segments of this project:
 
--    Intensive field scouting across several states (more info
-    [here](https://coolbean.info/soybean-research/data-driven-knowledge/)) and the **How to** guide is [here](https://docs.google.com/document/d/1q_V8d3wQTgxxyuOwsDbPoDL5ddiMfWvW0H8dK8oq_Yw/edit?usp=sharing)
-    
+-   The **Production survey** is available
+    [here](https://survey123.arcgis.com/share/4bacfb5607d147ac80c2fe282ad7206a)
+    and **checklist** of info necessary to fill in the survey is
+    [here](https://docs.google.com/document/d/1I1oa36d_ObWw13RJOL4bM_ONlPZi4OWQMujQPUF7BQo/edit?usp=sharing)
+
+-   Intensive field scouting across several states (more info
+    [here](https://coolbean.info/soybean-research/data-driven-knowledge/))
+    and the **How to** guide is
+    [here](https://docs.google.com/document/d/1q_V8d3wQTgxxyuOwsDbPoDL5ddiMfWvW0H8dK8oq_Yw/edit?usp=sharing)
 
 ```{=html}
 <div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embedded/02e6e129-1594-4ccf-b774-677a981fedca" id="kbUg_0~mFnz0"></iframe></div>
 ```
+Please send any queries to
+[mladen@psu.edu](mailto:mladen@psu.edu){.email}
 
-Please send any queries to mladen@psu.edu   
+Any feedback is appreciated. Please leave it [here](https://forms.gle/xEJJ3nUdatU8hWcw7)  
+
 All data collected for this project will be kept strictly confidential.
- 
