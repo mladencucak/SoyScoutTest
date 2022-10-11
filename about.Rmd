@@ -26,7 +26,7 @@ primary goal of the project is to analyze farmer data (yield, management
 practices and associated costs) in fields located across the
 North-Central US. Our primary focus is on increased profitability
 through improved knowledge of yield-limiting factors and best management
-practices. There are two major segments of this project:
+practices. There are two major segments of this project: 
 
 -   The **Production survey** is available
     [here](https://survey123.arcgis.com/share/4bacfb5607d147ac80c2fe282ad7206a)
