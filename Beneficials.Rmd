@@ -28,14 +28,9 @@ library(kableExtra)
  
  
 
-# install.packages("reshape2")
-# Authorize googlesheets4
-googlesheets4::gs4_auth(email = "mladencucak@gmail.com",
-                        cache = ".secrets",
-                        use_oob = TRUE)
-googledrive::drive_auth(email = "mladencucak@gmail.com", # Replace with your email!
-                        cache = ".secrets",
-                        use_oob = TRUE)
+options(gargle_oauth_email  = "cropriskstatus@gmail.com")
+drive_deauth()
+drive_auth(path = ".secrets/client_secret.json")
 
 # Destination of the sheet
 urlfile <-
