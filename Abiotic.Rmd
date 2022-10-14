@@ -30,7 +30,7 @@ library("ftExtra")
 # browseURL("https://datascienceplus.com/how-to-use-googlesheets-to-connect-r-to-google-sheets/")
  
  
-
+# test
 options(gargle_oauth_email  = "cropriskstatus@gmail.com")
 drive_deauth()
 drive_auth(path = ".secrets/client_secret.json")
